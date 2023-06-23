@@ -1,0 +1,594 @@
+<!DOCTYPE html><html lang="cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>操作系统 | Steveny's Blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>操作系统</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-06-19T11:02:40.000Z" id="date"> 2023-06-19</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-06-19T11:10:04.566Z" id="updated"> 2023-06-19</time></div></span></div></div><hr><div id="post-content"><h1 id="Operating-System"><a href="#Operating-System" class="headerlink" title="Operating System"></a>Operating System</h1><h3 id="1-Introduction-Of-Operating-System"><a href="#1-Introduction-Of-Operating-System" class="headerlink" title="1. Introduction Of Operating System"></a>1. Introduction Of Operating System</h3><ul>
+<li>Operating system manages all of the hardware resources of a computer and makes it easy to use.</li>
+<li>User &lt;–&gt; Application &lt;–&gt; Operating system &lt;–&gt; Hardware</li>
+<li>The function of operating system:<ol>
+<li>Allocation and Management of Resources among computer user processes. （分配和管理计算机资源）</li>
+<li>Maximising Resource Utilisation with the goal of improving overall system throughput.（提升资源利用率）</li>
+<li>Providing a user interface and an application interface to the machine.（提供用户界面和程序接口）</li>
+<li>Coordinating the many concurrent activities and devices, handling input and output from attached hardware and ensuring correct synchronisation and communication is achieved.（管理多线程任务和设备输入输出）</li>
+<li>Acting as a Resource Guardian to protect various resources of the computer system from malicious or accidental misuse.（保护资源不被滥用）</li>
+<li>Accounting for periods of resource usage by user processes, enforcing quotas or restrictions as appropriate. （合理分配计算资源）</li>
+<li>Power and Thermal Management.（电力和温度管理）</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-Program-Process-and-Processor"><a href="#2-Program-Process-and-Processor" class="headerlink" title="2. Program, Process and Processor"></a>2. Program, Process and Processor</h3><ul>
+<li><p>Program, Process and Processor</p>
+<ul>
+<li><p>Program</p>
+<ul>
+<li>A program is a collection of instructions specifying a defined sequence of execution. It is the translation of an algorithm into a programming language.（程序是指令集，是代码的程序语言）</li>
+</ul>
+</li>
+<li><p>Process</p>
+<ul>
+<li>A process is an instance of a program in action. It is an operating system abstraction. When the instructions are being carried out, a process exists.（进程是程序的实例，当对应指令执行时，则称进程被运行，是一个抽象概念）</li>
+<li>The program image has a format specific to a particular operating system and processor.（程序要特定操作系统和处理器）</li>
+<li>A process is an execution context, a collection of kernel managed information needed while it is running. </li>
+<li>Processes are dynamic entities whose lifetimes range from a few milliseconds to maybe months. （可以很短）</li>
+<li>Processes may be persistent, implementing system services.（也可以很长）</li>
+</ul>
+</li>
+<li><p>Processor</p>
+<ul>
+<li>A processor is the agent which runs a process by executing the instructions stored in the memory image. (执行指令)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Representing Process Abstractions</p>
+<ul>
+<li>A fundamental task of an operating system is process management – Creating, Controlling, Terminating –Managing the Execution Environment（线程的创建，控制，终止和管理执行环境）</li>
+<li>For each process, the operating system maintains a <strong>process control block (PCB)</strong> or <strong>process descriptor</strong> to keep a clear picture of what each process is doing, what point it has reached in its execution and what resources have been assigned to it.（进程控制块保存进程信息）<ul>
+<li>A Process Control Block is used to keep track of the execution context (all resource information about the process and its activity) that can be used for independent scheduling of that process onto any manprocessor.（上下文和资源使用信息）</li>
+</ul>
+</li>
+<li>Process Identification Data（比如PID）， Processor State（比如寄存器内容）， Process Control Data（标志寄存器内容）</li>
+</ul>
+</li>
+<li><p>Process Lifecycle</p>
+</li>
+<li><p>The PCB may be moved between different queues over the process lifetime depending on the priority or state of its execution. （根据优先级移动队列）</p>
+</li>
+<li><p>Queues hold processes waiting for different resources which are serviced using scheduling algorithms.（队列管理等待中的进程）</p>
+</li>
+<li><p>Process Creation —— Process Ready —— Running —— Waiting —— Terminate</p>
+</li>
+<li><p>System Calls and Hardware Interrupts</p>
+<ul>
+<li>The processor executes in one of two modes, User Mode or Supervisor Mode. When executing a user process the processer is in User Mode, and can only execute a subset of its instruction set. To execute operating system code, the processor must be switched to Supervisor Mode in a controlled manner and can then execute its full instruction set. （用户模式和监督模式）</li>
+<li>A special processor instruction known as a <strong>software interrupt</strong> is the mechanism for doing <em>Switching to Supervisor Mode</em>.</li>
+<li>System Calls are often accessed through wrapper libraries linked with the user space process. （不受内核限制）</li>
+<li>The Hardware Interrupt mechanism is needed to enable the system to effectively <strong>manage a large number of hardware devices efficiently</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-Process-scheduling"><a href="#3-Process-scheduling" class="headerlink" title="3. Process scheduling"></a>3. Process scheduling</h3><ul>
+<li><p>Process Scheduling</p>
+<ul>
+<li><p>Each process must compete with others for the available resources. </p>
+</li>
+<li><p>Context Switch </p>
+<ul>
+<li>It saves the run-time state of the current process in the process control block so that it can be continued later, and then executes dispatcher code to load the run-time state of the chosen process for the CPU to continue executing instead. （上下文切换）</li>
+</ul>
+</li>
+<li><p>asymmetric multiprocessing</p>
+<ul>
+<li>One CPU for scheduling and allocating resources.</li>
+</ul>
+</li>
+<li><p>symmetric multiprocessing</p>
+<ul>
+<li>All processors carry out similar functions and are self scheduling.</li>
+</ul>
+</li>
+<li><p>Times</p>
+<ul>
+<li><p><em>Processor Utilisation</em> &#x3D; (Execution Time) &#x2F; ( Total Time) </p>
+</li>
+<li><p><em>Throughput</em> &#x3D; Jobs per Unit time </p>
+</li>
+<li><p><em>Turnaround Time</em> &#x3D; (Time job finishes) - (Time job was submitted) </p>
+</li>
+<li><p><em>Waiting Time</em> &#x3D; Time doing nothing in a queue</p>
+</li>
+<li><p><em>Response Time</em> &#x3D; (Time job is first scheduled on cpu) - (Time job was submitted)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Scheduling Algorithms</p>
+<ul>
+<li>non-preemptive（非抢占式调度，即一个进程正在执行，则其他进程阻塞）<ul>
+<li>FCFS (First Come First Served)<ul>
+<li>Fair but performs badly for interactive systems</li>
+</ul>
+</li>
+<li>SJF (Shortest Job First) <ul>
+<li>Not fair but optimal</li>
+</ul>
+</li>
+<li>HRN(Highest Response Ratio Next)<ul>
+<li>根据等待时间和执行时间的比值决定下一个任务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>preemptive（抢占式调度，即一个重要的进程将要执行，则会强制切换上下文）<ul>
+<li>RR(Round Robin)<ul>
+<li>根据时间片大小循环执行每个任务，时间片过小会产生大量上下文切换，时间片过大会退化成FCFS</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-Disk-Scheduling"><a href="#4-Disk-Scheduling" class="headerlink" title="4. Disk Scheduling"></a>4. Disk Scheduling</h3><ul>
+<li><p>Construction of disk</p>
+<ul>
+<li><p>Smaller platter diameters offer better rigidity, weigh less and require less power to spin, meaning more useful with portable devices&#x2F;usb power, less noise and heat and improved seek performance. </p>
+</li>
+<li><p>A sector&#x2F;block is the <strong>smallest storage unit of</strong> <strong>data</strong> that can be addressed, read from or written to the disk.（扇区）</p>
+</li>
+<li><p>Each platter surface has a <strong>read&#x2F;write head</strong> which can move linearly across it. （读写头）</p>
+</li>
+</ul>
+</li>
+<li><p>Sectors</p>
+<ul>
+<li>The contents of each sector area include sector id information, sector status codes, synchronization bit patterns to guide the read head, 512 or 4k bytes of data, error correction codes and sector gaps. （扇区，id，状态码）</li>
+<li>The number of sectors stored on inner tracks is constrained by the bit density of the magnetic surface. </li>
+<li>This also means that if the rotational velocity is constant, that data can be transferred faster from the outer tracks than the inner tracks. （如果转速恒定，则磁盘外圈的读写速度比内圈快）</li>
+</ul>
+</li>
+<li><p>Solid State Drives</p>
+<ul>
+<li>20-40 times faster than standard storage.</li>
+<li>Performance:<ul>
+<li>Capacity（容量大）</li>
+<li>Data Rate（带宽大）</li>
+<li>Average Latency（读写平均）</li>
+<li>Reliability（可靠）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Scheduling Algorithms</p>
+<ul>
+<li>The slowest part of accessing a disk block is physically moving the head to the correct track. This is called the <strong>seek time</strong>.（移动读写头占用了大量时间） </li>
+<li><strong>Native Command Queuing</strong> (<strong>NCQ</strong>) is an extension of the SATA protocol allowing hard disk drives to internally optimize the order in which received read and write commands are executed.（当用户的应用程序发送多条指令到硬盘，NCQ硬盘可以优化完成这些指令的顺序，从而降低机械负荷达到提升性能的目的）</li>
+<li>Different Schedules:<ul>
+<li>FCFS （First come first served）：先来后到</li>
+<li>SSTF（Shortest seek time first）：从当前读写头所在位置附近的地方开始，每次去找离当前位置最近的数据</li>
+<li>SCAN：读写头在磁盘内反复扫描，像“&gt;”一样，期间不改变扫描方向</li>
+<li>C-SCAN：每次都从头扫到尾，像”\\“一样，期间不改变扫描方向</li>
+<li>LOOK：和SCAN一样，但如果该次扫描方向上没有其他读写请求则会<strong>反转</strong>移动方向</li>
+<li>C-LOOK：和C-SCAN一样，但如果该次扫描方向上没有其他读写请求则会<strong>反转</strong>移动方向</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-Unix-Process"><a href="#5-Unix-Process" class="headerlink" title="5. Unix Process"></a>5. Unix Process</h3><ul>
+<li><p>Unix Process Creation</p>
+<ul>
+<li>使用fork()创建进程，最初的进程为父（parent），新创建的进程为子（child）</li>
+<li>Child process is an exact copy of the parent including a copy of the parent’s I&#x2F;O descriptor table, so it inherits access to all the parent’s open I&#x2F;O devices.（子进程会继承父进程的I&#x2F;O描述表）</li>
+<li>exec()函数将执行一段二进制代码</li>
+<li>wait()函数将等待直到一个子进程的结束，并返回子进程的PID，如果失败则返回-1。</li>
+</ul>
+</li>
+<li><p>Booting a Linux System</p>
+<ul>
+<li>After power on self test and hardware identification by firmware routines, the first boot device is selected and the <strong>Master Boot Record</strong>, the first sector on the drive, is read from that device. The MBR contains initial bootstrapping code and information about the active partition. （当固件自检和其他例程结束后，将读取第一个扇区的MBR）</li>
+<li>Master Boot Record (MBR) contains initial bootstrapping code called by the BIOS and partition information about the primary boot device and the active partition.（含有BIOS）</li>
+</ul>
+</li>
+<li><p>Interprocess Communication（进程间通信）</p>
+<ul>
+<li>Where to use:<ul>
+<li>Data Parallelization for Computational Speedup.（加速计算）</li>
+<li>Modular, Pipelined or Layered Division of functions or microservices within an application.（程序模块化，管道化）</li>
+<li>Client use of a service on a network.（网络客户端）</li>
+</ul>
+</li>
+<li>Two ways:<ul>
+<li><strong>Shared Memory Communication</strong>（共享内存）<ul>
+<li>Model is application oriented, suits cooperating processes willing to share memory.（面向应用程序）</li>
+<li>Implicit communication through read&#x2F;write operations.（通过读&#x2F;写操作通信）</li>
+<li>Highly efficient, no communication protocols.（无通信协议的高效通信）</li>
+<li>Need synchronisation mechanisms.（但需要高度同步机制）</li>
+</ul>
+</li>
+<li><strong>message passing primitives</strong>（消息密语）<ul>
+<li>问题一：The message passing operations Send and Receive may be either blocking or non-blocking. （消息的发送和接收可以是阻塞的，也可以是不阻塞的）</li>
+<li>问题二：Buffering adds complexity and the need for message sequencing.（缓冲区大小不定）</li>
+<li>问题三：Packets can be of fixed or variable size, typed or untyped messages. （数据包大小不定）</li>
+<li>问题四：The mechanism must deal with the problems of networked communication such as lost and scrambled messages, and also with security issues. （网络中断问题）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Interprocess Communication in Unix（Unix系统的进程间通信机制）</strong></p>
+<ul>
+<li><h5 id="第一种：Pipe（管道）"><a href="#第一种：Pipe（管道）" class="headerlink" title="第一种：Pipe（管道）"></a>第一种：Pipe（管道）</h5><ul>
+<li><p><strong>Pipes</strong> are FIFO byte stream communication channels implemented with finite size memory buffers maintained by the kernel. （管道是一种固定字节流的FIFO通信通道，由有限大小的缓冲区实现和维护）</p>
+</li>
+<li><p>A process writes data to one end of the pipe, and usually another process reads it from the other end. A pipe exists for the lifetime of the processes that have access to it. （管道由进程维护，生命周期由进程决定）</p>
+</li>
+<li><p>A pipe can only be used between <strong>related processes</strong> and is generally used as a unidirectional communication channel from parent to child or vice versa. The parent would create the pipe before creating the child so that the child can inherit access to it.（管道创建早于子进程的创建且是单向的）</p>
+</li>
+<li><p>pipe在C语言中的使用方法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> fdptr[<span class="number">2</span>], n, buffersize=<span class="number">21</span>;	<span class="comment">// 如果一次读的字符数多于管道内，则会返回已读的字符</span></span><br><span class="line">    <span class="type">char</span> strbuff[buffersize+<span class="number">1</span>];</span><br><span class="line">    <span class="type">char</span> message[] = <span class="string">&quot;Welcome to Unix pipes&quot;</span>;</span><br><span class="line">    <span class="type">int</span> pid;</span><br><span class="line">    </span><br><span class="line">	pipe(fdptr); 					<span class="comment">// Create a new pipe，其中fdptr[0]是读取管道，fdptr[1]是写入管道</span></span><br><span class="line">	pid = fork();					<span class="comment">// 子进程继承父进程的管道</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (pid == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="comment">/* read from the pipe into strbuff */</span></span><br><span class="line">			n = read(fdptr[<span class="number">0</span>], strbuff, buffersize); <span class="comment">// 参数：（管道，需要写入的内容，写入量）</span></span><br><span class="line">			strbuff[n]=<span class="number">0</span>;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Child read: %s\n&quot;</span>, strbuff);</span><br><span class="line">            sleep(<span class="number">5</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Parent writing: %s\n&quot;</span>, message);</span><br><span class="line">            <span class="comment">/* write message into the pipe */</span></span><br><span class="line">			write(fdptr[<span class="number">1</span>], message, <span class="built_in">strlen</span>(message)); <span class="comment">// 参数：（管道，用来存储内容的变量，写入量）</span></span><br><span class="line">			sleep(<span class="number">5</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><h5 id="第二种：Named-Pipe（命名管道）"><a href="#第二种：Named-Pipe（命名管道）" class="headerlink" title="第二种：Named Pipe（命名管道）"></a>第二种：Named Pipe（命名管道）</h5><ul>
+<li><p>A variation of this mechanism known as a <em>named pipe</em>, can be used for communication between unrelated processes that have access to the same file name space.（可以被同一文件夹下的不同进程访问）</p>
+</li>
+<li><pre><code class="c">// To create a named pipe file called “mypipe” in the current directory, use:-
+mknod(&quot;mypipe&quot;, 010777, 0);
+// 参数代表（名称，权限，无关变量），权限中的010是NamedPipe的特殊标识，777代表全部权限
+
+// Processes open named pipes in the same way as regular files, so 
+// unrelated processes can communicate by opening the pipe and 
+// either reading or writing it.
+// A process can open a pipe in read or write mode.
+namedpipe = open(“mypipe&quot;,O_WRONLY);
+namedpipe = open(“mypipe&quot;,O_RDONLY);
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- ##### 第三种：Socket（套接字）</span><br><span class="line"></span><br><span class="line">  - A socket is a data structure created by an application to represent a communication channel. The socket must be bound or associated to some entity (service access point/port) within the communication system. （网络通信通道）</span><br><span class="line">  - The communication service (e.g TCP/IP) provides the glue for establishing connections between sockets belonging to different processes, which are often on different machines and networks and for transporting and routing messages through the network to a destination. （TCP/IP保证了多设备的网络通信）</span><br><span class="line">  - On the Internet, IP addresses and port numbers are used as a means of identifying the endpoints of a connection to which a program’s socket might be connected.（IP地址和端口号作为端的唯一标识）</span><br><span class="line"></span><br><span class="line">- ##### 第四种：Remote Procedure Call（远程过程调用）</span><br><span class="line"></span><br><span class="line">  - RPC is a more convenient communication abstraction built on top of an underlying endpoint connection mechanism like sockets over TCP/IP which is intended to make client server programming easier. It enables you to call a remote function in a similar manner to a local one.（可以像在本地调用函数一样调用远程函数）</span><br><span class="line">  - 难点一：Arguments are passed by value, as in the remote address space, pointer references cannot be evaluated correctly. This makes it difficult to pass memory pointer based data structures or object references for example. （指针引用困难）</span><br><span class="line">  - 难点二：It will be necessary for the RPC mechanism to find an agreeable external data representation format for representing the information exchanged so that it is interpreted correctly by both parties. （需要合适的数据交换格式）</span><br><span class="line"></span><br><span class="line">- ##### 第五种：Message Queues（消息队列）</span><br><span class="line"></span><br><span class="line">  - Message queues allow processes to exchange data in the form of **whole messages** asynchronously. No rendezvous required.（可以异步的交换数据）</span><br><span class="line"></span><br><span class="line">  - Messages have an **associated** **priority** and are queued in priority order.（消息队列是有优先级的）</span><br><span class="line"></span><br><span class="line">  - 消息队列对比管道的特点：</span><br><span class="line"></span><br><span class="line">    - Internal structure and geometry set by user（有内部结构，管道没有）</span><br><span class="line">    - Separate messages are distinguishable（消息内容可区分，管道不能）</span><br><span class="line">    - Queue sorted on message priority（消息有优先级，管道没有）</span><br><span class="line">    - Process can determine status of queue, maximum msg size（进程可以知道消息队列的状态和大小，管道不能）</span><br><span class="line"></span><br><span class="line">  - ```c</span><br><span class="line">    mq_open() 	// function creates a new message queue or opens an existing queue, returning a 				   message queue descriptor for use in later calls.</span><br><span class="line">    mq_send()   // function writes a message to a queue.</span><br><span class="line">    mq_receive() // function reads a message from a queue.</span><br><span class="line">    mq_close()	 // function closes a message queue that the process previously opened.</span><br><span class="line">    mq_unlink()  // function removes a message queue name and marks the queue for deletion when all 				processes have closed it.</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><pre><code class="c">int main (int argc, char *argv[]) &#123;
+   int modeflags = O_CREAT | O_WRONLY; /*Create if it doesn’t exist*/
+   mode_t permissions = 0600; /* Read/Write for owner only */
+   struct mq_attr attr;
+   mqd_t mq;
+
+   char qname [20];
+   int max_size =512;
+   char buffer[max_size];
+   int priority;
+
+   strcpy(qname, &quot;/test_queue&quot;);
+
+   attr.mq_flags = 0; /* Blocking allowed mode */
+   attr.mq_maxmsg = 10;
+   attr.mq_msgsize = max_size;
+
+   mq = mq_open(qname, modeflags, permissions, &amp;attr);
+   if (mq &lt; 0) &#123;
+      printf(&quot;Couldn&#39;t create queue %s\n&quot;,qname);
+      exit(-1);
+   &#125;
+
+   for (priority = 1; priority&lt;=10; priority++) &#123;
+           memset(buffer,0, max_size); /* Clear all buffer locations to 0 */
+        sprintf(buffer, &quot;%d&quot;, priority); /* Convert int &quot;priority&quot; to string and store in buffer*/ 
+        strcat(buffer,&quot; message text&quot;); /* The message we want to send */
+
+        mq_send(mq, buffer, strlen(buffer), priority); 
+    &#125;
+   
+   if (!mq_close(mq))
+      printf(&quot;Closed the queue\n&quot;);
+&#125;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 6. Threads</span><br><span class="line"></span><br><span class="line">- Modern operating systems support the model of a single process environment supporting multiple threads of control executing independently at different points within the process’s code.（现代操作系统支持执行多个线程来代替进程）</span><br><span class="line">- **Better Resource Usage / Quicker to Create**（更好的资源使用和更快的创建速度）</span><br><span class="line">- **User Space Threads**（用户空间线程）</span><br><span class="line">  - 优点：</span><br><span class="line">    - This implementation does not require any operating system support for threads. Invoking a function in the library to create or destroy a thread or schedule a thread can be handled very fast as a local function call in user space, which manipulates local data structures for controlling user defined threads and what the program is doing at a given moment. （线程可以直接调用本地库而不是需要操作系统的支持来快速处理）</span><br><span class="line">  - 缺点：</span><br><span class="line">    - A context switch to the kernel would block all threads in the process, as the kernel is unaware of the existence of separate thread abstractions manipulated within the application context. （在内核中的上下文切换将阻塞所有线程）</span><br><span class="line">    - Scheduling of threads by the user space thread library would be non preemptive.（线程的调度是非抢占性的）</span><br><span class="line">    - And the application can’t benefit from multicore processing.（该程序将无法从多核CPU中获益）</span><br><span class="line">- **Kernel Space Threads**（内核空间线程）</span><br><span class="line">  - 优点：</span><br><span class="line">    - Implementing threads in kernel space offers greater flexibility and efficiency. A thread issuing a system call does not necessarily block all other threads in that process. （系统调用的线程将不会阻塞其他线程）</span><br><span class="line">    - Threads can be scheduled onto separate CPUs on a multiprocessor system offering true application concurrency. （可以被调度到多核CPU中）</span><br><span class="line">    - Threads compete on an equal basis for CPU cycles and they may be preempted by hardware timers easily.（平等竞争，可以被硬件计时器抢占）</span><br><span class="line">- POSIX Standard was developed to provide a common abstraction or virtualization of operating system services by making system calls standard across all Unix system varieties, enhancing code portability.</span><br><span class="line"></span><br><span class="line">### 7. Mutual Exclusion Problem</span><br><span class="line"></span><br><span class="line">- 互斥问题简介：两个线程访问同一资源时会出现互斥</span><br><span class="line"></span><br><span class="line">- 互斥问题解决的三个标准：</span><br><span class="line"></span><br><span class="line">  - **Mutual Exclusion**:	No two threads can be able to execute simultaneously in the critical code section.（在同一时间内必须保证在同一时间内只有一个线程访问共享资源）</span><br><span class="line"></span><br><span class="line">  - **Progress**:     A thread operating outside the critical section cannot prevent another thread form entering the critical section.（任何外部线程不能影响另一个线程的访问）</span><br><span class="line"></span><br><span class="line">  - **Bounded Waiting**:    Once a thread has indicated its desire to enter a critical section, it is guaranteed </span><br><span class="line"></span><br><span class="line">    that it may do so in a finite time.（线程在访问资源的过程的时间是有限的）</span><br><span class="line"></span><br><span class="line">- 解决方案一：</span><br><span class="line"></span><br><span class="line">  - ```c</span><br><span class="line">    int flag = 0; /* Shared variable between the threads Initially 0 */</span><br><span class="line">    while (flag == 1) &#123;&#125; // 线程等待</span><br><span class="line">    flag = 1; </span><br><span class="line">    // Enter the Pass </span><br><span class="line">    // ... </span><br><span class="line">    // Leave the Pass </span><br><span class="line">    flag = 0;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>问题：当两个线程同时得知flag不为1时，便会一起被释放。</p>
+</li>
+</ul>
+</li>
+<li><p>解决方案二：</p>
+<ul>
+<li><pre><code class="c">int turn = 0;/* Shared variable between the processes, initially 0 */
+// 一个线程
+while (turn == 0) &#123;&#125; 
+Enter Pass Enter Pass 
+... ... 
+Leave Pass Leave Pass 
+turn = 0;
+
+//另一个线程
+while (turn == 1) &#123;&#125; 
+Enter Pass Enter Pass 
+... ... 
+Leave Pass Leave Pass
+turn = 1;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 问题：解决了互斥问题，但步骤是锁定的，只有两个线程。</span><br><span class="line"></span><br><span class="line">- 解决方案三：</span><br><span class="line"></span><br><span class="line">  - ```c</span><br><span class="line">    boolean[] flags = &#123;false, false&#125;;</span><br><span class="line">    // 一个线程</span><br><span class="line">    flag[0] = true;</span><br><span class="line">    while(flag[1]) &#123;&#125;</span><br><span class="line">    ...</span><br><span class="line">    flag[0] = false;</span><br><span class="line">    </span><br><span class="line">    // 另一个线程</span><br><span class="line">    flag[1] = true;</span><br><span class="line">    while(flag[0]) &#123;&#125;</span><br><span class="line">    ...</span><br><span class="line">    flag[1] = false;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p>问题：当两个线程同时设定自己的flag为true时，会发生死锁。</p>
+</li>
+</ul>
+</li>
+<li><p>解决方案四：</p>
+<ul>
+<li><pre><code class="c">int flag = 1; /* Shared variable between the processes initially 1 */
+while (flag == 0) &#123;&#125; /*Do nothing while Flag=1*/ 
+flag = 0;
+Enter the Pass 
+... 
+Leave the Pass 
+flag = 1;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 问题：与方案一相同。</span><br><span class="line"></span><br><span class="line">- 最终解决方案：**Bakery Algorithm** 面包店算法</span><br><span class="line"></span><br><span class="line">  - ```c</span><br><span class="line">    boolean[] choosing;  // 记录对应线程是否正在买票</span><br><span class="line">    int[] number; 		 // 记录每个线程得到的票的id</span><br><span class="line">    </span><br><span class="line">    // 对于线程i：</span><br><span class="line">    choosing[i] = true; 									// 设定自己的状态为正在买票</span><br><span class="line">    number[i]=Max(number[0],number[1], ...,number[n-1])+1; 	// 将自己的票的id设定为最大值 + 1</span><br><span class="line">    choosing[i] = false;									// 恢复</span><br><span class="line">    </span><br><span class="line">    // 对于所有其他线程j1, j2, j3...：</span><br><span class="line">    for (j = 0; j &lt; n; j++) &#123;</span><br><span class="line">    	while choosing[j] &#123;&#125;					// 如果自己正在买票，则等待自己买完票</span><br><span class="line">    	while ((number[j] != 0) &amp;&amp; ((number[j],j) &lt; (number[i],i))) &#123;</span><br><span class="line">    		// 如果有线程票的id比自己小，则等待</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    ...   // 获得资源</span><br><span class="line">    </span><br><span class="line">    number[i] = 0;  //将自己的票设为0，即没买过票</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-Semaphore"><a href="#8-Semaphore" class="headerlink" title="8. Semaphore"></a>8. Semaphore</h3><ul>
+<li><p>前者算法的不足之处：</p>
+<ul>
+<li><p>One of the problems with this scheme is that the entry and exit code and associated shared data structures are a bit unwieldy and awkward when used by a programmer to protect any arbitrary critical section.（使用繁琐且数据结构复杂）</p>
+</li>
+<li><p>All of these software solutions involve <strong>Busy Waiting</strong> - an execution loop in the code where the thread continually tests the locking condition during its scheduled timeslice until the condition allows it to continue into the critical section. （多次循环导致忙等待）</p>
+</li>
+</ul>
+</li>
+<li><p>Busy Waiting（忙等待）</p>
+<ul>
+<li>This is OK if the waiting period is short, but not for long waits, we need to suspend the process.（当处理时间较长时，忙等待将会降低系统性能）</li>
+<li>Priority inversion can occur where a lower priority task in the critical section may hold a lock which causes a higher priority task to wait.（可能会导致优先级反转）</li>
+</ul>
+</li>
+<li><p><strong>Semaphore</strong></p>
+<ul>
+<li>In its <strong>classical definition</strong>, a semaphore consists of a shared integer variable accessible only through two defined operations, P &amp; V, (sometimes known as Wait and Signal, or Acquire and Release). （P代表获取，V代表释放）</li>
+<li>两种Semaphore：<ul>
+<li>When the semaphore value is used to control mutual exclusion, then a <strong>binary semaphore</strong> is used which can only have the value 0 or 1. It is used as a mutex locking mechanism.（单例共享）</li>
+<li>A <strong>counting semaphore</strong> (or rate limiting semaphore) can also be implemented by setting the count value to a maximum number (say n) of threads allowed into a region of code at one time. （多个共享）</li>
+</ul>
+</li>
+<li>核心思想：通过请求Semaphore的方式来简单的获取和释放共享资源。</li>
+<li>避免<strong>繁琐的数据结构</strong>和忙等待问题，保证了<strong>线程的公平</strong>性</li>
+</ul>
+</li>
+<li><pre><code class="java">public class Semaphore &#123;
+    private int value;
+    
+    public Semaphore(int value) &#123;
+        this.value = value;
+    &#125;
+
+    public synchronized void acquire() &#123;
+        while (value == 0) &#123;		// 循环的意义是防止notify方法唤醒错误的线程
+            try &#123;
+                // Calling thread waits until semaphore is free
+                wait();
+            &#125; catch(InterruptedException e) &#123;&#125;
+        &#125;
+        value = value - 1;
+    &#125;
+
+    public synchronized void release() &#123;
+        value = value + 1;
+        notify();
+    &#125;
+&#125;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 9. Classical Problems</span><br><span class="line"></span><br><span class="line">##### The Producer/Consumer Problem</span><br><span class="line"></span><br><span class="line">- 描述：一个生产者和消费者分别持续生产和消费，会产生线程安全问题。</span><br><span class="line"></span><br><span class="line">- 核心思想：使用一个缓冲区来管理生产者和消费者，设定一个empty和一个full的Semaphore来分别判断一个线程是从能从缓冲区中添加或者删除一个元素。</span><br><span class="line"></span><br><span class="line">- </span><br><span class="line">  ```java</span><br><span class="line">  // Buffer</span><br><span class="line">  public class Buffer &#123;</span><br><span class="line">  	private static final int BUFFER_SIZE = 5;</span><br><span class="line">  	private Object[] buffer;</span><br><span class="line">  	private int in, out;</span><br><span class="line">  	private Semaphore mutex;</span><br><span class="line">  	private Semaphore empty;</span><br><span class="line">  	private Semaphore full;</span><br><span class="line">  </span><br><span class="line">  	public Buffer() &#123;</span><br><span class="line">  		in = 0;</span><br><span class="line">  		out = 0;</span><br><span class="line">  		buffer = new Object[BUFFER_SIZE];</span><br><span class="line">  		mutex = new Semaphore(1);</span><br><span class="line">  		empty = new Semaphore(BUFFER_SIZE);</span><br><span class="line">  		full = new Semaphore(0);</span><br><span class="line">  	&#125;</span><br><span class="line">  </span><br><span class="line">  	public void insert(Object item) &#123;</span><br><span class="line">  		empty.acquire();				// 当empty被获取完时，等待消费者消费</span><br><span class="line">  		mutex.acquire();				// 顺序十分重要！不然会发生死锁！</span><br><span class="line">  		buffer[in] = item;</span><br><span class="line">  		in = (in + 1) % BUFFER_SIZE;</span><br><span class="line">  		mutex.release();</span><br><span class="line">  		full.release();					// 提醒消费者消费</span><br><span class="line">  	&#125;</span><br><span class="line">  </span><br><span class="line">  	public Object remove() &#123;</span><br><span class="line">  		full.acquire();					// 当full被获取完时，等待生产者生产</span><br><span class="line">  		mutex.acquire();				// 顺序十分重要！不然会发生死锁！</span><br><span class="line">  		Object item = buffer[out];</span><br><span class="line">  		out = (out + 1) % BUFFER_SIZE;</span><br><span class="line">  		mutex.release();</span><br><span class="line">  		empty.release();				// 提醒生产者生产</span><br><span class="line">  		return item;</span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<h5 id="Dining-Philosophers-Problem"><a href="#Dining-Philosophers-Problem" class="headerlink" title="Dining Philosophers Problem"></a>Dining Philosophers Problem</h5><ul>
+<li><p>问题描述：5个哲学家在一桌吃饭，但桌上只有5根筷子，一个哲学家每次吃饭前都要有两根筷子。</p>
+</li>
+<li><p>通常解决：将每根筷子都设定为Binary Semaphore，每次吃饭前取走筷子，吃饭后释放筷子。</p>
+</li>
+<li><p>通常解决的问题：当5个人同时取走一根筷子时，将会发生死锁。</p>
+</li>
+<li><p>解决方案一：</p>
+<ul>
+<li><p>一次只允许4名哲学家获取筷子，也就是说一桌同时只能有4个人同时吃饭。</p>
+</li>
+<li><pre><code class="java">class Philosopher extends Thread &#123;
+    private int myName;
+    private Semaphore chopSticks[];			// new Semaphore(1) 指一根筷子只能同时一个人用
+    private Semaphore room;					// new Semaphore(4) 指一个房间同时只能有4个人
+    
+    public void run() &#123;
+        while (true) &#123;
+            // thinking
+            room.acquire();					
+            chopSticks[myName % 5].acquire(); // Acquire left
+            chopSticks[(myName + 1) % 5].acquire(); // Acquire right
+
+            // eating
+
+            chopSticks[myName % 5].release(); // Release left
+            chopSticks[(myName + 1) % 5].release(); // Release right
+            room.release();
+        &#125;
+    &#125;
+&#125;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 解决方案二：</span><br><span class="line"></span><br><span class="line">  - 通过互斥锁保证哲学家在获取筷子时一次获取两根筷子。</span><br><span class="line"></span><br><span class="line">  - ```java</span><br><span class="line">    class Philosopher extends Thread &#123;</span><br><span class="line">        private int myName;</span><br><span class="line">        private Semaphore chopSticks[];</span><br><span class="line">        private Semaphore mutex;</span><br><span class="line">        private boolean haveChopSticks;</span><br><span class="line">    </span><br><span class="line">        public void run() &#123;</span><br><span class="line">            while (true) &#123;</span><br><span class="line">                // thinking</span><br><span class="line">                </span><br><span class="line">                haveChopSticks = false;</span><br><span class="line">                while (!haveChopSticks) &#123;</span><br><span class="line">                    mutex.acquire();</span><br><span class="line">                    if ((chopSticks[myName % 5].getValue() == 1) &amp;&amp; (chopSticks[(myName + 1) % 5].getValue() == 1)) &#123;									// 保证一次能获取两根筷子</span><br><span class="line">                        chopSticks[myName % 5].acquire(); // Acquire left</span><br><span class="line">                        chopSticks[(myName + 1) % 5].acquire(); // Acquire right</span><br><span class="line">                        haveChopSticks = true;</span><br><span class="line">                    &#125;</span><br><span class="line">                    mutex.release();</span><br><span class="line">                &#125;</span><br><span class="line">                // eating</span><br><span class="line">                </span><br><span class="line">                chopSticks[myName % 5].release(); // Release left</span><br><span class="line">                chopSticks[(myName + 1) % 5].release(); // Release right</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="Readers-x2F-Writers-Problem"><a href="#Readers-x2F-Writers-Problem" class="headerlink" title="Readers&#x2F;Writers Problem"></a>Readers&#x2F;Writers Problem</h5><ul>
+<li><p>问题描述：对数据的读&#x2F;写需要严格的权限管理，以确保读写的正确性。</p>
+</li>
+<li><p><strong>优先考虑读者</strong>的解决方案：</p>
+<ul>
+<li><p>即只有所有读者都读完之后，作者才能开始写。不同读者可以轮流读，但不同作者不能轮流写。</p>
+</li>
+<li><pre><code class="java">public class DataAccessPolicyManager &#123;
+   private int readerCount;
+   private Semaphore mutex;
+   private Semaphore wrt;
+
+   public void acquireReadLock() &#123;
+      mutex.acquire();			// synchronized
+      ++readerCount;
+      if (readerCount == 1) 	// 当第一个读者开始读时，拿走互斥锁；当所有读者读完时，归还互斥锁。
+         wrt.acquire();
+      mutex.release();
+   &#125;	
+
+   public void releaseReadLock() &#123;
+      mutex.acquire();
+      --readerCount;
+      if (readerCount == 0) 	// Last reader
+         wrt.release();
+      mutex.release();
+   &#125;
+
+   public void acquireWriteLock() &#123;
+      wrt.acquire();
+   &#125;
+ 
+   public void releaseWriteLock() &#123;
+      wrt.release();
+   &#125;
+&#125;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- **优先考虑作者**的解决方案：</span><br><span class="line"></span><br><span class="line">  - 第一个作者只需要等待正在读的读者读完就可以开始写，但只有在作者写完之后才能开始写。</span><br><span class="line"></span><br><span class="line">  - ```java</span><br><span class="line">    public class DataAccessPolicyManager2 &#123;</span><br><span class="line">        private int readCount, writeCount;</span><br><span class="line">        private Semaphore mutexReadCount, mutexWriteCount;</span><br><span class="line">        private Semaphore wrt, rdr;</span><br><span class="line">    </span><br><span class="line">        public void acquireReadLock() &#123;</span><br><span class="line">            rdr.acquire();</span><br><span class="line">            mutexReadCount.acquire();</span><br><span class="line">            readCount = readCount + 1;</span><br><span class="line">            if (readCount == 1)</span><br><span class="line">                wrt.acquire();</span><br><span class="line">            mutexReadCount.release();</span><br><span class="line">            rdr.release();</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        public void releaseReadLock() &#123;</span><br><span class="line">            mutexReadCount.acquire();</span><br><span class="line">            readCount = readCount - 1;</span><br><span class="line">            if (readCount == 0)</span><br><span class="line">                wrt.release();</span><br><span class="line">            mutexReadCount.release();</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        public void acquireWriteLock() &#123;</span><br><span class="line">            mutexWriteCount.acquire();</span><br><span class="line">            writeCount = writeCount + 1;</span><br><span class="line">            if (writeCount == 1)</span><br><span class="line">                rdr.acquire();</span><br><span class="line">            mutexWriteCount.release();</span><br><span class="line">            wrt.acquire();</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        public void releaseWriteLock() &#123;</span><br><span class="line">            mutexWriteCount.acquire();</span><br><span class="line">            writeCount = writeCount - 1;</span><br><span class="line">            if (writeCount == 0)</span><br><span class="line">                rdr.release();</span><br><span class="line">            mutexWriteCount.release();</span><br><span class="line">            wrt.release();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-Deadlock"><a href="#10-Deadlock" class="headerlink" title="10. Deadlock"></a>10. Deadlock</h3><ul>
+<li><p>A set of processes is in a deadlock state when every process in the set is waiting on an event that can be caused only by another process in the set. （一个线程需要等待另一个线程时可能会发生死锁）</p>
+</li>
+<li><p><strong>Four Necessary Conditions for Deadlock</strong> </p>
+<ul>
+<li><em>Mutual Exclusion</em> : At least one resource must be held in a non-shareable mode.（至少有一个资源是非共享的）</li>
+<li><em>Hold and Wait</em> : A process must have at least one resource and be waiting for more. （一个进程在获得资源之后还要继续获得其他资源）</li>
+<li><em>No Preemption</em> : Resources cannot be preempted. Resources are not released until process does so voluntarily.（非抢占式）</li>
+<li><em>Circular Wait</em> : P0 waits for P1, P1 waits for P2 ….. and finally Pn waits for P0.（循环等待）</li>
+</ul>
+</li>
+<li><p>避免死锁：</p>
+<ul>
+<li>Ensure System never enters deadlock<ul>
+<li><em>Deadlock Prevention</em> ensures at least one of the necessary conditions do not hold by generally constraining in some way how requests for resources are made.（避免达成死锁必要条件）</li>
+<li><em>Deadlock Avoidance</em> techniques supply the system with additional information about process resource needs over the lifetime of the process. （请求额外信息）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Allow system to enter deadlock and then recover</p>
+</li>
+<li><p>Banker’s Algorithm</p>
+<ul>
+<li>方法：存在一个序列，使得Pi的（Max - Allocation）的值始终小于（Available + Σ （Allocation of Pj））的值，其中j &lt; i.</li>
+</ul>
+</li>
+</ul>
+<h3 id="11-Memory"><a href="#11-Memory" class="headerlink" title="11. Memory"></a>11. Memory</h3><ul>
+<li><p>External Fragmentation : the process cannot fit in our largest partition, we cannot run it. （内存空间不足）</p>
+</li>
+<li><p>Internal Fragmentation : processes will not need all the space of the partitions allocated to them.（内存空间浪费）</p>
+</li>
+<li><p>内存中存储的内容：</p>
+<ul>
+<li>Text – Code of the program occupies this area and is generally static.（代码，文本，都是静态的）</li>
+<li>Stack – A stack is generally a fixed sized region of memory which a process uses to create stack frames for holding parameters and local variables and return linkage addresses when calling functions. Frames are always added to and removed from the top of the stack in a LIFO manner which makes allocation and deallocation faster. Each thread must have its own stack but shares a heap.（内存空间中的栈保存进程的变量和函数调用，每个线程都有自己的栈）</li>
+<li>Heap – A heap is a variable sized region of memory which is used for creating dynamic data structures and objects. Variables created on the heap will still exist after function calls return, unlike stack based variables. Management of the heap’s linear space is more complex and takes longer. （堆保存数据结构和对象）</li>
+</ul>
+</li>
+<li><p>Bitmap：可以将数据缩小<strong>八</strong>倍空间，分配快速，取消分配也快速</p>
+</li>
+<li><p>Linked List：（Dynamic）动态大小，没有内存浪费（Internal Fragmentation）</p>
+</li>
+<li><p>分页机制（Page Mechanism）</p>
+<ul>
+<li>简介：将多个内存碎片组合为一个页面，在寻址过程中额外提供页的索引。</li>
+<li>优点：克服了之前内存分配的外部碎片问题（External Fragmentation），即内存分配过程中会出现多个小的空闲内存区间而没有较大的内存空间。而且保证了内存的安全，即不会寻址到内存空间外。</li>
+<li>缺点：需要额外的硬件支持。而且分页表可能会很大，在分页表的寻值速度变慢导致效率降低。</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-File-System"><a href="#12-File-System" class="headerlink" title="12. File System"></a>12. File System</h3><ul>
+<li><p>Directory File:</p>
+<ul>
+<li>The file system requires a data structure to store this and other information relating to each file that is stored on a particular storage device. This data structure is called a file system <strong>directory</strong>.（文件系统目录）</li>
+</ul>
+</li>
+<li><p>大需求：</p>
+<ul>
+<li>The file system designer must decide how these blocks are allocated and deallocated in order to achieve the maximum performance from the file system as well as ensuring file persistence and data integrity. At the device driver level, the designer will have to be aware of the physical device characteristics.（如何分配和再分配磁盘区域使效率最大化，以及如何保证文件的持久性和数据完整性）</li>
+<li>The file system user is concerned with how to access files, how to organise the internal structure of a file, organise collections of files into logical groupings and how to share them with other users. （如何使用户管理文件）<ul>
+<li>Open，Close，Copy，Create，Rename，Get attributes，Set attributes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>小需求：</p>
+<ul>
+<li><p>Mapping files onto devices </p>
+</li>
+<li><p>Organizing files into directories </p>
+</li>
+<li><p>File Protection, File Sharing </p>
+</li>
+<li><p>Data Integrity &amp; Persistence</p>
+</li>
+<li><p>Support for a variety of storage devices</p>
+</li>
+<li><p>User Interface</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Linked Allocation</strong></p>
+<ul>
+<li>简介：为了解决文件大小动态变化所带来空间不足的问题，采用在一个文件的每一个片段块的最后加上下一个片段块的指针，最后一个片段块中加入终止代码。</li>
+</ul>
+</li>
+<li><p><strong>Indexed Allocation</strong></p>
+<ul>
+<li>index block：前一种分配如果出现片段损坏将影响整个文件，可以将所有指针信息全部放入索引块的方法避免。</li>
+</ul>
+</li>
+<li><p><strong>Managing a Hierarchical File System Name Space</strong></p>
+<ul>
+<li>A directory is a special file containing information about a subset of the file name space and is interpreted and manipulated by file system software.（目录是特殊的文件，包括其子文件的信息，由操作系统定义和操作）</li>
+</ul>
+</li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/05/31/%E5%AD%A4%E6%98%9F/">孤星 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">Steveny</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social" target="_blank" rel="noopener" href="https://github.com/JIGerss"><i class="fab fa-github" alt="GitHub"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Operating-System"><span class="toc-number">1.</span> <span class="toc-text">Operating System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Introduction-Of-Operating-System"><span class="toc-number">1.0.1.</span> <span class="toc-text">1. Introduction Of Operating System</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Program-Process-and-Processor"><span class="toc-number">1.0.2.</span> <span class="toc-text">2. Program, Process and Processor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Process-scheduling"><span class="toc-number">1.0.3.</span> <span class="toc-text">3. Process scheduling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Disk-Scheduling"><span class="toc-number">1.0.4.</span> <span class="toc-text">4. Disk Scheduling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Unix-Process"><span class="toc-number">1.0.5.</span> <span class="toc-text">5. Unix Process</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%EF%BC%9APipe%EF%BC%88%E7%AE%A1%E9%81%93%EF%BC%89"><span class="toc-number">1.0.5.0.1.</span> <span class="toc-text">第一种：Pipe（管道）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%EF%BC%9ANamed-Pipe%EF%BC%88%E5%91%BD%E5%90%8D%E7%AE%A1%E9%81%93%EF%BC%89"><span class="toc-number">1.0.5.0.2.</span> <span class="toc-text">第二种：Named Pipe（命名管道）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-Semaphore"><span class="toc-number">1.0.6.</span> <span class="toc-text">8. Semaphore</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Dining-Philosophers-Problem"><span class="toc-number">1.0.6.0.1.</span> <span class="toc-text">Dining Philosophers Problem</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Readers-x2F-Writers-Problem"><span class="toc-number">1.0.6.0.2.</span> <span class="toc-text">Readers&#x2F;Writers Problem</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-Deadlock"><span class="toc-number">1.0.7.</span> <span class="toc-text">10. Deadlock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-Memory"><span class="toc-number">1.0.8.</span> <span class="toc-text">11. Memory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-File-System"><span class="toc-number">1.0.9.</span> <span class="toc-text">12. File System</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="text-title">ICP</span><a class="text-content" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">豫ICP备2022020092号</a></nobr><nobr><span class="text-title">©</span><span class="text-content">2023 to 2023</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

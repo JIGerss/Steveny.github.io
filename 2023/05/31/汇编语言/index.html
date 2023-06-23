@@ -1,0 +1,350 @@
+<!DOCTYPE html><html lang="cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>汇编语言 | Steveny's Blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>汇编语言</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-05-31T11:03:44.000Z" id="date"> 2023-05-31</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-05-31T11:08:00.071Z" id="updated"> 2023-05-31</time></div></span></div></div><hr><div id="post-content"><h2 id="第一章-基础知识"><a href="#第一章-基础知识" class="headerlink" title="第一章 基础知识"></a>第一章 基础知识</h2><ul>
+<li>计算机将代码和数据都储存在内存中，如果不加以区分，则两者都为二进制形式，没有任何区别。</li>
+<li>对于储存器和内存来说，1个字节（Byte）为一个存储单元，即一个8位二进制数 &#x3D; 两个十六进制数</li>
+<li>CPU对储存器的一次读写分为：<ul>
+<li>储存单元的地址（地址信息）</li>
+<li>器件的选择，读或写的命令（控制信息）</li>
+<li>读或写的数据（数据信息）</li>
+</ul>
+</li>
+<li>对于地址信息：<ul>
+<li>总线数量 &#x3D; 总线宽度</li>
+<li>2 ^ N Byte 为该类型CPU的寻址能力，N为CPU地址总线数量<ul>
+<li>解释：因为1个Byte为一个存储单元，所以只需算出地址所能表达出多少个不同二进制数即可</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>主板上的RAM（如内存），ROM（如BIOS），显卡和网卡等均需要由CPU处理，并分配不同的内存地址空间。一个CPU的内存地址空间是有限的。</li>
+</ul class='item-img' data-src='.\1.png'><img src=".\1.png" alt="1" style="zoom:50%;" />
+
+<h2 id="第二章-寄存器"><a href="#第二章-寄存器" class="headerlink" title="第二章 寄存器"></a>第二章 寄存器</h2><ul>
+<li><p>8086CPU具有14种16位寄存器（AX，BX，CX，DX，CS，DS，SS，ES，SI，DI，SP，BP，IP，PSW），其中，AX、BX、CX和DX为通用寄存器，每个通用寄存器都可以拆分为两个8位通用寄存器使用。如AX可以拆分为AH，AL两个寄存器使用。</p>
+<ul>
+<li><p>注意：如果在代码中将通用寄存器拆分为两个寄存器使用，则这两个寄存器在如进位运算或数据存储上将没有任何关系。例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov al, FFH ; 将最大1字节数赋给al</span><br><span class="line">add al, 2H  ; al加2，此时进位不会给ah，而会被CPU吃掉（这样描述很不规范）</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>在寄存器或内存中，可以用<strong>字节</strong>（Byte）和<strong>字</strong>（word）两种数据格式存储，前提是储存空间足够大。</p>
+</li>
+<li><p>在8086CPU中，物理地址（内存的真实地址）为20位二进制数，但在CPU中只有16位的总线，因此需要用段地址和偏移地址两个16位二进制数表示物理地址。</p>
+</li>
+<li><p>物理地址 &#x3D; 段地址 × 16 + 偏移地址， 即段地址二进制数左移4位加上偏移地址</p>
+</li>
+<li><p>地址计算在CPU中的地址加法器中进行</p>
+</li>
+<li><p>段的概念：</p>
+<ul>
+<li><p>内存本质上并没有分段，只是CPU将内存以分段的形式使用</p>
+</li>
+<li><p>一个段的<strong>最开始</strong>单元的物理地址的16进制数总是以0结尾</p>
+</li>
+<li><p>一个段所能包含的最大容量为64KB，即偏移地址 L(0000H ~ FFFFH) &#x3D; 2 ^ 16 B &#x3D; 2 ^ 6 KB &#x3D; 64 KB</p>
+</li>
+</ul>
+</li>
+<li><p>段寄存器</p>
+<ul>
+<li>段寄存器有CS，DS，SS，ES四种，用来储存对应数据的段地址</li>
+<li>CS为代码段寄存器，储存代码数据在内存中的段地址。IP为指令地址寄存器，储存代码数据在内存中的偏移地址</li>
+<li>使用CS：IP的形式来表示（CS × 16 + IP）的物理地址</li>
+<li>[偏移地址] 表示DS × 16 + <em>偏移地址</em>内存上的数据，其中数据可以为字也可以为字节（根据寄存器大小赋值，如mov ax，[0]则为将偏移地址为0处的字赋给ax）</li>
+<li>在内存中，<strong>字</strong>需要两个存储单元来存储，存储时低位在前，高位在后，以低位所在地址为其字的物理地址</li>
+<li>注意：不能将一个数字赋值给段寄存器（如mov ds，0001H），需要使用其他寄存器中转（如mov ax，0001H   mov ds，ax）</li>
+</ul>
+</li>
+<li><p>栈</p>
+<ul>
+<li>由栈段寄存器SS和寄存器SP（SS：SP）表示<strong>栈顶</strong>的物理地址</li>
+<li class='item-img' data-src='.\2.png'><img src=".\2.png" alt="image-20230527203227137" style="zoom:50%;" /></li>
+<li>当栈为空时，SS：SP指向栈的下一位（如图中例子则为1010H）</li>
+<li>栈存储时从内存空间的最后一位开始存储，存储字时先将高位入栈，再将地位入栈</li>
+<li>push和pop指令可以对物理地址上的数进行直接处理</li>
+</ul>
+</li>
+</ul>
+<h2 id="第三章-常用的指令与技巧"><a href="#第三章-常用的指令与技巧" class="headerlink" title="第三章 常用的指令与技巧"></a>第三章 常用的指令与技巧</h2><table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th align="center">格式</th>
+<th align="center">含义</th>
+<th>例子</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">mov</td>
+<td align="center">mov 寄存器，值</td>
+<td align="center">将值赋给该寄存器</td>
+<td>mov ax, 0</td>
+<td align="center">*也可以是[偏移地址]（默认指DS：偏移地址）</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">mov 寄存器，寄存器</td>
+<td align="center">将寄存器或存储单元的值赋给寄存器</td>
+<td>mov ax,bx</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">mov 段寄存器，寄存器</td>
+<td align="center">将寄存器的值赋给段寄存器</td>
+<td>mov ds,ax</td>
+<td align="center">*不能给段寄存器直接赋值</td>
+</tr>
+<tr>
+<td align="center">offset</td>
+<td align="center">offset 标签</td>
+<td align="center">获得标签处的数据或代码的偏移地址</td>
+<td>offset str</td>
+<td align="center">*既可以获取变量的偏移地址，也可以获取代码上标签的偏移地址</td>
+</tr>
+<tr>
+<td align="center">cmp</td>
+<td align="center">cmp 寄存器，寄存器</td>
+<td align="center">将两者数值相减但不保存</td>
+<td>cmp ax,bx</td>
+<td align="center">*前者＜后者则CF标志位为1</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">cmp 寄存器，值</td>
+<td align="center"></td>
+<td>cmp ax,3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">db</td>
+<td align="center">变量名 db 值</td>
+<td align="center">声明一个字节的空间存放数据</td>
+<td>var1 db 10H</td>
+<td align="center">*声明字符串时会占用连续若干个字节的空间</td>
+</tr>
+<tr>
+<td align="center">dw</td>
+<td align="center">变量名 dw 值</td>
+<td align="center">声明一个字的空间</td>
+<td>var2 dw 1000H</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">add</td>
+<td align="center">add 寄存器，值</td>
+<td align="center">将值与寄存器中的值相加，将结果保存在寄存器中</td>
+<td>add ax,1H</td>
+<td align="center">*不处理进位，进位会携带CF标志</td>
+</tr>
+<tr>
+<td align="center">adc</td>
+<td align="center">adc 寄存器，值</td>
+<td align="center">将值、CF的值与寄存器中的值相加</td>
+<td>adc ax,1H</td>
+<td align="center">*会多与CF相加</td>
+</tr>
+<tr>
+<td align="center">sub</td>
+<td align="center">sub 寄存器，值</td>
+<td align="center">与add差不多，但相减</td>
+<td></td>
+<td align="center">*会借位</td>
+</tr>
+<tr>
+<td align="center">inc&#x2F;dev</td>
+<td align="center">inc 寄存器</td>
+<td align="center">自加1减1</td>
+<td>inc ax</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">mul</td>
+<td align="center">mul 寄存器，寄存器</td>
+<td align="center">相乘，结果保存在前一个寄存器中</td>
+<td>mul ax,bx</td>
+<td align="center">*8位乘8位结果为16位；16位乘16位结果为32位</td>
+</tr>
+<tr>
+<td align="center">div</td>
+<td align="center">div 值</td>
+<td align="center"><strong>ax为16位，则ax与该值相除，商保存在ax中，余数保存在dx中</strong></td>
+<td>div 10</td>
+<td align="center">*16位除8位结果为8位</td>
+</tr>
+<tr>
+<td align="center">and</td>
+<td align="center">and 寄存器，寄存器</td>
+<td align="center">按位取和</td>
+<td>and ax,bx</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">or</td>
+<td align="center">…</td>
+<td align="center">按位取或</td>
+<td>…</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">xor</td>
+<td align="center">…</td>
+<td align="center">按位取异或</td>
+<td>…</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">shl&#x2F;shr</td>
+<td align="center">shl 寄存器,值</td>
+<td align="center">将寄存器中值的二进制形式左（右）移若干位</td>
+<td>shl ax,1</td>
+<td align="center">*最后一位&#x2F;第一位补0</td>
+</tr>
+<tr>
+<td align="center">sal&#x2F;sar</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td>…</td>
+<td align="center">*最后一位&#x2F;第一位保持原值</td>
+</tr>
+<tr>
+<td align="center">rol&#x2F;ror</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td>…</td>
+<td align="center">*将第一位的值赋给<strong>最后一位</strong>和<strong>CF位</strong>，反之亦然</td>
+</tr>
+<tr>
+<td align="center">rcl&#x2F;rcr</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td>…</td>
+<td align="center">*将第一位的值赋给CF位，同时CF位的值赋给最后一位，反之亦然</td>
+</tr>
+<tr>
+<td align="center">loop</td>
+<td align="center">loop 标签</td>
+<td align="center">循环执行标签与loop之间的代码n次，n为CX中的值</td>
+<td>start:          loop start</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">jc</td>
+<td align="center">jc 标签</td>
+<td align="center">当CF位不为0时跳转</td>
+<td>jc stop</td>
+<td align="center">*cmp ax,bx中<strong>ax＜bx</strong>时则jc跳转</td>
+</tr>
+<tr>
+<td align="center">ja</td>
+<td align="center">ja 标签</td>
+<td align="center">当CF≠0，ZF≠0时跳转</td>
+<td>ja stop</td>
+<td align="center">*实质为前者大于后者时跳转</td>
+</tr>
+<tr>
+<td align="center">lea</td>
+<td align="center">lea SI,标签</td>
+<td align="center">从标签处读取字符串到SI指向的内存</td>
+<td>lea SI,str</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">movsb</td>
+<td align="center">movsb</td>
+<td align="center">将<em>地址SI</em>处的字符串<strong>拷贝</strong>到<em>地址DI</em>处字符串的后面，并将结果保存在*地址DI处</td>
+<td>movsb</td>
+<td align="center">*将DS:SI处的字符串拷贝到ES:DI处字符串</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">REP movsb</td>
+<td align="center">循环拷贝直到DX &#x3D; 0</td>
+<td>REP movsb</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">cmpsb</td>
+<td align="center">REPE cmpsb</td>
+<td align="center">当每个字符相等时循环</td>
+<td></td>
+<td align="center">*还是比较DS:SI和ES:DI处的字符串</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">RENE cmpsb</td>
+<td align="center">当每个字符不相等时循环</td>
+<td></td>
+<td align="center">*比较完成后可以使用je或jne跳转</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2 id="第四章-特殊数据类型的运算"><a href="#第四章-特殊数据类型的运算" class="headerlink" title="第四章 特殊数据类型的运算"></a>第四章 特殊数据类型的运算</h2><ul>
+<li><p>浮点数在计算机中的表示方法：</p>
+<ul>
+<li>一个单精度浮点数（float）占用32位&#x2F;4字节的空间</li>
+<li>一个单精度浮点数分三部分：符号（sign），指数（exponent），有效数字（significand）</li>
+<li>例子：178.625D：<ul>
+<li>整数部分：178D &#x3D; 10110010B，小数部分：0.625D &#x3D; 0.101B</li>
+<li>178.625D &#x3D; 10110010.101B &#x3D; 1.0110010101 × 2 ^ 7</li>
+<li>将数字 × 2 ^ 127，则为1.<strong>0110010101</strong> × 2 ^ <strong>134</strong></li>
+<li>将小数部分和指数部分取出并计算指数部分的二进制形式134D &#x3D; 10000110B</li>
+<li>按照 符号，指数，有效数字的顺序组合。即0,10000110,01100101010000000000000</li>
+<li>其中符号占1位，指数占8位，有效数字占23位</li>
+</ul>
+</li>
+<li><pre><code class="assembly">
+</code></pre>
+</li>
+</ul>
+<p>FINIT ; Set FPU to default state<br>FLDCW cntrl ; Round even, Mask Interrupts<br>FLD A ; Push A onto FP stack<br>FMUL ST,ST(1) ; Multiply STST result on ST<br>FMUL ST,ST(1) ; Multiply STST result on ST again to get A^3<br>FLD B ; Push B onto FP stack<br>FSQRT ; Square root number on stack (B)<br>FADD ST,ST(1) ; ADD top two numbers on stack (A^3 + √B)<br>FSTSW stat ; Load FPU status into [stat]<br>mov ax,stat ; Copy [stat] into ax<br>and al,0BFh ; Check all 6 status bits<br>jnz pass ; If any bit set then jump<br>FSTP RESULT ; Copy result from stack into RESULT</p>
+</li>
+<li><p>字符串操作</p>
+<ul>
+<li><p>直接看例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">assume ds:dataseg</span><br><span class="line">assume cs:codeseg</span><br><span class="line">dataseg segment</span><br><span class="line">	str1 db &#x27;This is a test$&#x27;</span><br><span class="line">	str2 db &#x27;this string is a placeholder bulabula$&#x27;</span><br><span class="line">dataseg ends</span><br><span class="line"></span><br><span class="line">codeseg segment</span><br><span class="line">	mov ax, ds					; DS = ES</span><br><span class="line">	mov es, ax</span><br><span class="line">	LEA SI,str1</span><br><span class="line">	LEA DI,str2</span><br><span class="line">	</span><br><span class="line">	mov cx, 15</span><br><span class="line">	REP movsb					; 重复复制字符串直到CX=0</span><br><span class="line">	</span><br><span class="line">	mov dx, offset str2</span><br><span class="line">	mov ah, 09h					; 将字符串内容输出到控制台上直到$</span><br><span class="line">	int 021h</span><br><span class="line">codeseg ends</span><br><span class="line">#输出：This is a test</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/05/31/%E5%AD%A4%E6%98%9F/">← Next 孤星</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/05/31/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Java多线程 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">Steveny</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social" target="_blank" rel="noopener" href="https://github.com/JIGerss"><i class="fab fa-github" alt="GitHub"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">第一章 基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">第二章 寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8C%87%E4%BB%A4%E4%B8%8E%E6%8A%80%E5%B7%A7"><span class="toc-number">3.</span> <span class="toc-text">第三章 常用的指令与技巧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%89%B9%E6%AE%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%BF%90%E7%AE%97"><span class="toc-number">4.</span> <span class="toc-text">第四章 特殊数据类型的运算</span></a></li></ol></div></div><footer><nobr><span class="text-title">ICP</span><a class="text-content" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">豫ICP备2022020092号</a></nobr><nobr><span class="text-title">©</span><span class="text-content">2023 to 2023</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Java Web学习笔记 | Steveny's Blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Java Web学习笔记</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-05-31T10:53:43.000Z" id="date"> 2023-05-31</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-05-31T11:00:40.292Z" id="updated"> 2023-05-31</time></div></span></div></div><hr><div id="post-content"><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><ul>
+<li>插入数据至表</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Insert into stu values</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>更新数据至表</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update stu set sex =&#x27;nv&#x27; where</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from stu where</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>为表添加外键</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table stu Constraint fk_emp_dept foreign_key(_id) reference dept(id)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>多表查询（内连接）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from stu , class where stu.class_id = class.id</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>多表查询（子查询）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from stu where class_id in (select id from class where grade = 3 or grade = 4)	</span><br></pre></td></tr></table></figure>
+
+<p>​		  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from (select * from stu where id &gt; 10) where class = 3</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>事务：</p>
+<ul>
+<li>开启事务</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BEGIN;	</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>提交事务</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">COMMIT;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>提交事务</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ROLLBACK;	</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>​	升序：ASC	降序：DESC</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="JDBC操作SQL"><a href="#JDBC操作SQL" class="headerlink" title="JDBC操作SQL"></a>JDBC操作SQL</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql//localhost:3306/database?useSSL=false&quot;</span>;</span><br><span class="line"><span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> DriverManager.getConnection(url ,account, password);</span><br><span class="line"><span class="type">PreparedStatement</span> <span class="variable">pstmt</span> <span class="operator">=</span> conn.prepareStatement(sql);</span><br><span class="line">pstmt.setString(<span class="number">1</span>, <span class="string">&quot;str&quot;</span>);</span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> pstmt.executeQuery();</span><br><span class="line"><span class="comment">//关闭资源</span></span><br><span class="line">re.close();</span><br><span class="line">pstmt.close();</span><br><span class="line">conn.close();</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Druid连接池"><a href="#Druid连接池" class="headerlink" title="Druid连接池"></a>Druid连接池</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Properties</span> <span class="variable">prop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">prop.load(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;src/druid.properties&quot;</span>));</span><br><span class="line"><span class="type">DataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> DruidDataSource.getConnection();</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://mybatis.net.cn/getting-started.html">https://mybatis.net.cn/getting-started.html</a></p>
+<h6 id="1-定义POJO类"><a href="#1-定义POJO类" class="headerlink" title="1.定义POJO类"></a>1.定义POJO类</h6><h6 id="2-加载核心配置文件，获取SqlSessionFactory对象"><a href="#2-加载核心配置文件，获取SqlSessionFactory对象" class="headerlink" title="2.加载核心配置文件，获取SqlSessionFactory对象"></a>2.加载核心配置文件，获取SqlSessionFactory对象</h6><h6 id="3-获取SqlSession对象，执行SQL语句"><a href="#3-获取SqlSession对象，执行SQL语句" class="headerlink" title="3.获取SqlSession对象，执行SQL语句"></a>3.获取SqlSession对象，执行SQL语句</h6><h6 id="4-释放资源"><a href="#4-释放资源" class="headerlink" title="4.释放资源"></a>4.释放资源</h6></li>
+</ul>
+<h3 id="ResultMap映射不同字段名"><a href="#ResultMap映射不同字段名" class="headerlink" title="ResultMap映射不同字段名"></a>ResultMap映射不同字段名</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;userResultMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;user&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;psw&quot;</span> <span class="attr">property</span>=<span class="string">&quot;password&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参数：<br>parameterType&#x3D;”int”		&#x2F;&#x2F;一般省略</p>
+<p>转义字符：</p>
+<p>1.CDATA[]</p>
+<p>2.转义字符 eg.&lt;</p>
+</blockquote>
+<h3 id="传递参数的三种方法"><a href="#传递参数的三种方法" class="headerlink" title="传递参数的三种方法"></a>传递参数的三种方法</h3><h4 id="1-加Param注解"><a href="#1-加Param注解" class="headerlink" title="1. 加Param注解"></a>1. 加Param注解</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selectByCondition(<span class="meta">@Param(&quot;name&quot;)</span> String name, <span class="meta">@Param(&quot;password&quot;)</span> String password, <span class="meta">@Param(&quot;uuid&quot;)</span> String uuid);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-包装为对象"><a href="#2-包装为对象" class="headerlink" title="2. 包装为对象"></a>2. 包装为对象</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selectByCondition1(User user);</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-构造集合"><a href="#3-构造集合" class="headerlink" title="3. 构造集合"></a>3. 构造集合</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Map</span> <span class="variable">map</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line">	map.put(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	map.put(<span class="string">&quot;password&quot;</span>,<span class="string">&quot;password&quot;</span>);</span><br><span class="line">	map.put(<span class="string">&quot;uuid&quot;</span>,<span class="string">&quot;uuid&quot;</span>);</span><br><span class="line">	selectByCondition2(Map map);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h2><h4 id="1-条件语句"><a href="#1-条件语句" class="headerlink" title="1. 条件语句"></a>1. 条件语句</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select *</span><br><span class="line">from where</span><br><span class="line">1 = 1	//防止语法问题需在最前面加上恒等式</span><br><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;name != null and name != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">	and name = #&#123;name&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;password != null and password !=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">	and name = #&#123;name&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-动态where语句"><a href="#2-动态where语句" class="headerlink" title="2. 动态where语句"></a>2. 动态where语句</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">select *</span><br><span class="line">from</span><br><span class="line"><span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;name != null and name != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">		and name = #&#123;name&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;password != null and password !=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">		and name = #&#123;name&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-单条件查询："><a href="#3-单条件查询：" class="headerlink" title="3. 单条件查询："></a>3. 单条件查询：</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">select * from where</span><br><span class="line"><span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;name != null&quot;</span>&gt;</span></span><br><span class="line">		name = #&#123;name&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;password != null&quot;</span>&gt;</span></span><br><span class="line">		password = #&#123;password&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">otherwise</span>&gt;</span></span><br><span class="line">		1 = 1</span><br><span class="line">	<span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-添加-主键返回"><a href="#4-添加-主键返回" class="headerlink" title="4. 添加-主键返回"></a>4. 添加-主键返回</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addUser&quot;</span> <span class="attr">useGeneratedKey</span>=<span class="string">&quot;true&quot;</span> <span class="attr">keyProperty</span>=<span class="string">&quot;uuid&quot;</span>&gt;</span></span><br><span class="line">	insert into users(name, psw) values(#&#123;name&#125;,#&#123;password&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-修改语句（动态set语句）"><a href="#5-修改语句（动态set语句）" class="headerlink" title="5. 修改语句（动态set语句）"></a>5. 修改语句（动态set语句）</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateUser&quot;</span>&gt;</span></span><br><span class="line">	update users</span><br><span class="line">	<span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;name != null and name != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">			name = #&#123;name&#125;,</span><br><span class="line">		<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;password != null and password != &#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">			name = #&#123;password&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">	where uuid = #&#123;uuid&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​		</p>
+<h4 id="6-批量删除（foreach遍历语句）"><a href="#6-批量删除（foreach遍历语句）" class="headerlink" title="6. 批量删除（foreach遍历语句）"></a>6. 批量删除（foreach遍历语句）</h4><ul>
+<li>接口：<code>void deleteUser(@Param(&quot;ids&quot;) int[] ids);</code></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;deleteUser&quot;</span>&gt;</span></span><br><span class="line">	detele from users</span><br><span class="line">	where id in</span><br><span class="line">	<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;ids&quot;</span> <span class="attr">item</span>=<span class="string">&quot;id&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span>&gt;</span></span><br><span class="line">		#&#123;id&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="HttpServlet"><a href="#HttpServlet" class="headerlink" title="HttpServlet"></a>HttpServlet</h2><h4 id="1-控制response输出类型"><a href="#1-控制response输出类型" class="headerlink" title="1. 控制response输出类型"></a>1. 控制response输出类型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-request转发"><a href="#2-request转发" class="headerlink" title="2. request转发"></a>2. request转发</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.getRequestDispatcher(<span class="string">&quot;资源b的虚拟路径&quot;</span>).forward(request, response);</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-response重定向"><a href="#3-response重定向" class="headerlink" title="3. response重定向"></a>3. response重定向</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.sendRedirect(<span class="string">&quot;资源b的虚拟路径&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-request添加键值对"><a href="#4-request添加键值对" class="headerlink" title="4. request添加键值对"></a>4. request添加键值对</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.setAttribute(<span class="string">&quot;users&quot;</span>, users);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="会话技术"><a href="#会话技术" class="headerlink" title="会话技术"></a>会话技术</h2><h4 id="1-Cookie设置"><a href="#1-Cookie设置" class="headerlink" title="1. Cookie设置"></a>1. Cookie设置</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Cookie</span> <span class="variable">cookie</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;Steveny&quot;</span>);</span><br><span class="line"></span><br><span class="line">response.addCookie(cookie);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Cookie获取"><a href="#2-Cookie获取" class="headerlink" title="2. Cookie获取"></a>2. Cookie获取</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Cookie[] cookies = request.getCookie();</span><br><span class="line"><span class="keyword">for</span>(Cookie c:cookies)&#123;</span><br><span class="line">	<span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> c.getName();</span><br><span class="line">		<span class="keyword">if</span>(<span class="string">&quot;username&quot;</span>.equals(name))&#123;</span><br><span class="line">		<span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> c.getValue();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-设置存活时间（单位：秒）"><a href="#3-设置存活时间（单位：秒）" class="headerlink" title="3. 设置存活时间（单位：秒）"></a>3. 设置存活时间（单位：秒）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cookie.setMaxAge(<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>*<span class="number">7</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-Cookie无法存中文的问题"><a href="#4-Cookie无法存中文的问题" class="headerlink" title="4. Cookie无法存中文的问题"></a>4. Cookie无法存中文的问题</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">URLencoder.encode(<span class="string">&quot;str&quot;</span>, <span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">URLdecoder.decode(<span class="string">&quot;str&quot;</span>, <span class="string">&quot;UTF-8&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Vue框架"><a href="#Vue框架" class="headerlink" title="Vue框架"></a>Vue框架</h2><h4 id="1-创建vue对象并绑定数据模型"><a href="#1-创建vue对象并绑定数据模型" class="headerlink" title="1. 创建vue对象并绑定数据模型"></a>1. 创建vue对象并绑定数据模型</h4><script>
+    new Vue({
+        el:"#app",
+        data(){
+            return {
+                username = "";
+                addrs = ["a","b","c"]
+            }
+        }
+    })
+</script>
+
+<h4 id="2-常用指令"><a href="#2-常用指令" class="headerlink" title="2. 常用指令"></a>2. 常用指令</h4><ul>
+<li><p>v-model&#x3D;”username”：绑定数据模型</p>
+</li>
+<li><p>v-bind:href&#x3D;”url”：绑定属性（可以省略v-bind）</p>
+</li>
+<li><p>v-on:click&#x3D;”show()”：绑定事件（方法）可以简化为@click<br>methods:{<br>    show(){<br>        alert(“Click!!!”);<br>    }<br>}</p>
+</li>
+<li><p>v-if&#x2F;v-else&#x2F;v-else-if&#x3D;”count &#x3D;&#x3D; 2”：条件语句（html文件里不会显示其他分支内容）</p>
+</li>
+<li><p>v-show&#x3D;”count &#x3D;&#x3D; 3”：根据条件是否显示组件（html文件里会显示其他分支内容）</p>
+</li>
+<li><p>v-for&#x3D;”addr in addrs”：遍历，addr为索引</p>
+</li>
+<li><p>mounted()：钩子，表示挂载完成</p>
+</li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-start"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/05/31/Spring-Framework/">← Next Spring Framework</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">Steveny</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social" target="_blank" rel="noopener" href="https://github.com/JIGerss"><i class="fab fa-github" alt="GitHub"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL"><span class="toc-number">1.</span> <span class="toc-text">MySQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JDBC%E6%93%8D%E4%BD%9CSQL"><span class="toc-number">2.</span> <span class="toc-text">JDBC操作SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Druid%E8%BF%9E%E6%8E%A5%E6%B1%A0"><span class="toc-number">2.0.1.</span> <span class="toc-text">Druid连接池</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mybatis"><span class="toc-number">3.</span> <span class="toc-text">Mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E5%AE%9A%E4%B9%89POJO%E7%B1%BB"><span class="toc-number">3.0.0.0.1.</span> <span class="toc-text">1.定义POJO类</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E5%8A%A0%E8%BD%BD%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%8C%E8%8E%B7%E5%8F%96SqlSessionFactory%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.0.0.0.2.</span> <span class="toc-text">2.加载核心配置文件，获取SqlSessionFactory对象</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96SqlSession%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%89%A7%E8%A1%8CSQL%E8%AF%AD%E5%8F%A5"><span class="toc-number">3.0.0.0.3.</span> <span class="toc-text">3.获取SqlSession对象，执行SQL语句</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-%E9%87%8A%E6%94%BE%E8%B5%84%E6%BA%90"><span class="toc-number">3.0.0.0.4.</span> <span class="toc-text">4.释放资源</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ResultMap%E6%98%A0%E5%B0%84%E4%B8%8D%E5%90%8C%E5%AD%97%E6%AE%B5%E5%90%8D"><span class="toc-number">3.1.</span> <span class="toc-text">ResultMap映射不同字段名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">传递参数的三种方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%8A%A0Param%E6%B3%A8%E8%A7%A3"><span class="toc-number">3.2.1.</span> <span class="toc-text">1. 加Param注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%8C%85%E8%A3%85%E4%B8%BA%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.2.2.</span> <span class="toc-text">2. 包装为对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%9E%84%E9%80%A0%E9%9B%86%E5%90%88"><span class="toc-number">3.2.3.</span> <span class="toc-text">3. 构造集合</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81SQL"><span class="toc-number">4.</span> <span class="toc-text">动态SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="toc-number">4.0.1.</span> <span class="toc-text">1. 条件语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%8A%A8%E6%80%81where%E8%AF%AD%E5%8F%A5"><span class="toc-number">4.0.2.</span> <span class="toc-text">2. 动态where语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%8D%95%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2%EF%BC%9A"><span class="toc-number">4.0.3.</span> <span class="toc-text">3. 单条件查询：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%B7%BB%E5%8A%A0-%E4%B8%BB%E9%94%AE%E8%BF%94%E5%9B%9E"><span class="toc-number">4.0.4.</span> <span class="toc-text">4. 添加-主键返回</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E4%BF%AE%E6%94%B9%E8%AF%AD%E5%8F%A5%EF%BC%88%E5%8A%A8%E6%80%81set%E8%AF%AD%E5%8F%A5%EF%BC%89"><span class="toc-number">4.0.5.</span> <span class="toc-text">5. 修改语句（动态set语句）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%EF%BC%88foreach%E9%81%8D%E5%8E%86%E8%AF%AD%E5%8F%A5%EF%BC%89"><span class="toc-number">4.0.6.</span> <span class="toc-text">6. 批量删除（foreach遍历语句）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HttpServlet"><span class="toc-number">5.</span> <span class="toc-text">HttpServlet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%8E%A7%E5%88%B6response%E8%BE%93%E5%87%BA%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.0.1.</span> <span class="toc-text">1. 控制response输出类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-request%E8%BD%AC%E5%8F%91"><span class="toc-number">5.0.2.</span> <span class="toc-text">2. request转发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-response%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">5.0.3.</span> <span class="toc-text">3. response重定向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-request%E6%B7%BB%E5%8A%A0%E9%94%AE%E5%80%BC%E5%AF%B9"><span class="toc-number">5.0.4.</span> <span class="toc-text">4. request添加键值对</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E6%8A%80%E6%9C%AF"><span class="toc-number">6.</span> <span class="toc-text">会话技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Cookie%E8%AE%BE%E7%BD%AE"><span class="toc-number">6.0.1.</span> <span class="toc-text">1. Cookie设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Cookie%E8%8E%B7%E5%8F%96"><span class="toc-number">6.0.2.</span> <span class="toc-text">2. Cookie获取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%AE%BE%E7%BD%AE%E5%AD%98%E6%B4%BB%E6%97%B6%E9%97%B4%EF%BC%88%E5%8D%95%E4%BD%8D%EF%BC%9A%E7%A7%92%EF%BC%89"><span class="toc-number">6.0.3.</span> <span class="toc-text">3. 设置存活时间（单位：秒）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Cookie%E6%97%A0%E6%B3%95%E5%AD%98%E4%B8%AD%E6%96%87%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">6.0.4.</span> <span class="toc-text">4. Cookie无法存中文的问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue%E6%A1%86%E6%9E%B6"><span class="toc-number">7.</span> <span class="toc-text">Vue框架</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BAvue%E5%AF%B9%E8%B1%A1%E5%B9%B6%E7%BB%91%E5%AE%9A%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">7.0.1.</span> <span class="toc-text">1. 创建vue对象并绑定数据模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">7.0.2.</span> <span class="toc-text">2. 常用指令</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="text-title">ICP</span><a class="text-content" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">豫ICP备2022020092号</a></nobr><nobr><span class="text-title">©</span><span class="text-content">2023 to 2023</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

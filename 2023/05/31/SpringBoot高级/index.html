@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>SpringBoot高级 | Steveny's Blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>SpringBoot高级</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-05-31T11:02:52.000Z" id="date"> 2023-05-31</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-05-31T11:09:01.471Z" id="updated"> 2023-05-31</time></div></span></div></div><hr><div id="post-content"><h4 id="日志的管理"><a href="#日志的管理" class="headerlink" title="日志的管理"></a>日志的管理</h4><ul>
+<li><p>SpringBoot默认使用logback类来记录日志（slf4j模板）</p>
+<ul>
+<li>使用方法：在需要写日志的类中加上Logger（slf4j包）对象并传入该类名称即可记录日志</li>
+<li>或：使用Lombok中的@slf4j注解</li>
+</ul>
+</li>
+<li><p>使用<code>Log.info()</code>添加日志</p>
+</li>
+<li><p>可以通过修改logging.console.pattern来更改日志格式</p>
+</li>
+<li><p>设置日志文件</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">logging:</span></span><br><span class="line"> <span class="attr">file:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">server.log</span>	<span class="comment"># 生成的日志文件名</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>日志详细配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">logging:</span></span><br><span class="line"> <span class="attr">file:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">server.log</span>	<span class="comment"># 生成的日志文件名</span></span><br><span class="line"> <span class="attr">logback:</span></span><br><span class="line">  <span class="attr">rollingpolicy:</span></span><br><span class="line">   <span class="attr">max-file-size:</span> <span class="string">3KB</span>								<span class="comment"># 文件切分的大小</span></span><br><span class="line">   <span class="attr">file-name-pattern:</span> <span class="string">server.%d&#123;yyyy-MM-dd&#125;.%i.log</span>	<span class="comment"># 文件切分的文件名</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="热部署"><a href="#热部署" class="headerlink" title="热部署"></a>热部署</h4><ul>
+<li><p>作用：由于SpringBoot内置tomcat，因此需要配置boot热部署来检测web工程是否发生更改</p>
+</li>
+<li><p>原理：热部署仅仅加载当前开发者自定义开发的资源，不包括jar包</p>
+</li>
+<li><p><strong>手动启动热部署</strong></p>
+<ul>
+<li>添加spring-boot-devtools依赖</li>
+<li>使用构建项目（ctrl+F9）</li>
+</ul>
+</li>
+<li><p><strong>自动启动热部署</strong></p>
+<ul>
+<li><p>添加以上的依赖，并打开idea设置-&gt;构建、执行、部署-&gt;自动构建</p>
+</li>
+<li><p>在idea下按  <strong>ctrl-alt-shift-&#x2F;</strong>  并打开注册选项，勾上automake.when.app.running</p>
+</li>
+<li><p>则在idea失去焦点5秒后自动构建项目</p>
+<blockquote>
+<p>可以在boot配置文件中配置不参与热部署的文件</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>关闭热部署</strong></p>
+<ul>
+<li>使用更高等级属性覆盖enabled配置（如System.SetProperty()）</li>
+</ul>
+</li>
+</ul>
+<h4 id="高级配置"><a href="#高级配置" class="headerlink" title="高级配置"></a>高级配置</h4><h6 id="第三方或自定义Bean的配置"><a href="#第三方或自定义Bean的配置" class="headerlink" title="第三方或自定义Bean的配置"></a>第三方或自定义Bean的配置</h6><ul>
+<li><p>作用：使用SpringBoot配置文件中的配置加载第三方或自定义Bean</p>
+</li>
+<li><p>特点：可以进行松散绑定，无需名称完全一致</p>
+</li>
+<li><p>方法：在对应类上加入<code>@ConfigurationProperties(prefix = &quot;aaa.bbb&quot;)</code>注解，其中prefix中写入需要的配置的父名称</p>
+<ul>
+<li><p>如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">aaa:</span></span><br><span class="line"> <span class="attr">bbb:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">&quot;frank&quot;</span></span><br><span class="line">  <span class="attr">age:</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Component</span>		<span class="comment">//注意，如果在Spring配置中开启配置属性的功能则不用加Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;aaa.bbb&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>注意：</strong>使用时应加入spring-boot-configuration-processor依赖</p>
+</li>
+<li><p>如果配置中需要配置单位，可以使用Duration（时间），DataSize（储存大小）两个类型使用<code>@DurationUnit()</code>和<code>@DataUnit()</code>配置单位</p>
+</li>
+</ul>
+<h6 id="Bean属性校验"><a href="#Bean属性校验" class="headerlink" title="Bean属性校验"></a>Bean属性校验</h6><ul>
+<li>起因：使用配置进行Bean配置时需要进行字段校验</li>
+<li>原理：使用JSR303校验规范</li>
+<li>步骤：<ul>
+<li>添加<strong>JSR303规范</strong>（validation-api）和<strong>Hibernate校验框架</strong>（规范的实现）的坐标</li>
+<li>在需要校验的类上加入@Validated注解，开启校验</li>
+<li>在需要校验的字段上加入对应规则的注解，如@MAX，@MIN</li>
+</ul>
+</li>
+</ul>
+<h4 id="高级测试"><a href="#高级测试" class="headerlink" title="高级测试"></a>高级测试</h4><h6 id="添加临时属性"><a href="#添加临时属性" class="headerlink" title="添加临时属性"></a>添加临时属性</h6><ul>
+<li>作用：在测试类中使用特定属性，只在该类中生效</li>
+<li>两种实现方法：<ul>
+<li>在SpringBootTest注解中加入properties属性，如<code>@SpringBootTest(properties=&#123;&quot;test.name=Steveny&quot;&#125;)</code></li>
+<li>在SpringBootTest注解中加入args属性，如<code>@SpringBootTest(args=&#123;&quot;--test.name=Franky&quot;&#125;)</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注意：使用命令行的args属性的优先级要高于使用boot配置</p>
+</blockquote>
+<h6 id="添加临时的Bean"><a href="#添加临时的Bean" class="headerlink" title="添加临时的Bean"></a>添加临时的Bean</h6><ul>
+<li>需求：在测试类中运用特殊的Bean仅供测试类使用</li>
+<li>方法：在测试目录下创建Config类并在用来测试的类上加入@Import注解导入配置</li>
+</ul>
+<h6 id="表现层测试"><a href="#表现层测试" class="headerlink" title="表现层测试"></a>表现层测试</h6><ul>
+<li><p>原理：Spring发送虚拟请求到指定路径并获得请求的回复</p>
+</li>
+<li><p>步骤：</p>
+<ul>
+<li>启动Web测试环境，在@SpringBootTest注解中加入webEnvironment值来开启Web环境</li>
+<li>在测试类上加入<code>@AutoConfigureMockMvc</code>注解打开测试</li>
+<li>自动装配MockMvc对象</li>
+<li>声明MockHttpServletRequestBuilder实体类，并使用MockMvcRequestBuilders工具类创建请求</li>
+<li>使用MockMvc对象的perform方法执行，返回请求结果</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)</span></span><br><span class="line"><span class="meta">@AutoConfigureMockMvc</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">testController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">testController</span><span class="params">(<span class="meta">@Autowired</span> MockMvc mockMvc)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">MockHttpServletRequestBuilder</span> <span class="variable">request</span> <span class="operator">=</span> MockMvcRequestBuilders.get(<span class="string">&quot;/user&quot;</span>);</span><br><span class="line">        <span class="type">ResultActions</span> <span class="variable">action</span> <span class="operator">=</span> mockMvc.perform(request);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>校验请求结果：<strong>MockMvcResultMatchers</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">testUser</span><span class="params">(<span class="meta">@Autowired</span> MockMvc mockMvc)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="type">MockHttpServletRequestBuilder</span> <span class="variable">request</span> <span class="operator">=</span> MockMvcRequestBuilders.get(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="type">ResultActions</span> <span class="variable">action</span> <span class="operator">=</span> mockMvc.perform(request);</span><br><span class="line"></span><br><span class="line">    <span class="type">StatusResultMatchers</span> <span class="variable">status</span> <span class="operator">=</span> MockMvcResultMatchers.status();		<span class="comment">//状态</span></span><br><span class="line">    <span class="type">ContentResultMatchers</span> <span class="variable">content</span> <span class="operator">=</span> MockMvcResultMatchers.content();	<span class="comment">//Body内容</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="type">ResultMatcher</span> <span class="variable">resultMatcher1</span> <span class="operator">=</span> status.isOk();</span><br><span class="line">    <span class="type">ResultMatcher</span> <span class="variable">resultMatcher2</span> <span class="operator">=</span> content.string(<span class="string">&quot;asd&quot;</span>);	</span><br><span class="line">    action.andExpect(resultMatcher1);</span><br><span class="line">    action.andExpect(resultMatcher2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="业务层测试事务回滚"><a href="#业务层测试事务回滚" class="headerlink" title="业务层测试事务回滚"></a>业务层测试事务回滚</h6><ul>
+<li>方法：在测试类上加入<code>@Transactional</code>注解即可</li>
+<li>注意：如果加上<code>@Transactional</code>注解之后想提交事务可以再加上<code>@Rollback(false)</code>注解</li>
+</ul>
+<h4 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h4><ul>
+<li><p><strong>简介：</strong></p>
+<ul>
+<li>WebSocket是HTML5下一种新的协议（websocket协议本质上是一个基于tcp的协议）</li>
+<li>它实现了浏览器与服务器全双工通信，能更好的节省服务器资源和带宽并达到实时通讯的目的</li>
+<li>Websocket是一个<strong>持久化</strong>的协议</li>
+</ul>
+</li>
+<li><p><strong>SpringBoot实现：</strong></p>
+<ul>
+<li><p>导入websocket的starter</p>
+</li>
+<li><p>创建ServerEndpointExporter的bean对象，用来注册带有@ServerEndpoint注解的类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebSocketConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> ServerEndpointExporter <span class="title function_">serverEndpointExporter</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ServerEndpointExporter</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建Endpoint的实体类，用来表示单个客户端在服务器中的对象，会有多个，并指定一个路径进行监听</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ServerEndpoint(value = &quot;/game&quot;, configurator = GetHttpSessionConfigurator.class)</span>	<span class="comment">//重要！！！！</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GameEndPoint</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用来存储每个用户客户端对象的ChatEndpoint对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, GameEndPoint&gt; onlineUsers = <span class="keyword">new</span> <span class="title class_">ConcurrentHashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//声明session对象，通过对象可以发送消息给指定的用户</span></span><br><span class="line">    <span class="keyword">private</span> Session session;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//声明HttpSession对象，我们之前在HttpSession对象中存储了用户名</span></span><br><span class="line">    <span class="keyword">private</span> HttpSession httpSession;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//连接建立</span></span><br><span class="line">    <span class="meta">@OnOpen</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onOpen</span><span class="params">(Session session, EndpointConfig config)</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//收到消息</span></span><br><span class="line">    <span class="meta">@OnMessage</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onMessage</span><span class="params">(String message, Session session)</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//关闭</span></span><br><span class="line">    <span class="meta">@OnClose</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClose</span><span class="params">(Session session)</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果需要调用HttpSession记得配置ServerEndpointConfig.Configurator中的modifyHandshake方法，将httpSession对象放在EndpointConfig中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GetHttpSessionConfigurator</span> <span class="keyword">extends</span> <span class="title class_">ServerEndpointConfig</span>.Configurator &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">modifyHandshake</span><span class="params">(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response)</span> &#123;</span><br><span class="line">        <span class="type">HttpSession</span> <span class="variable">httpSession</span> <span class="operator">=</span> (HttpSession) request.getHttpSession();</span><br><span class="line">        sec.getUserProperties().put(HttpSession.class.getName(), httpSession);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h4 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h4><ul>
+<li><p>Redis 是完全开源的，遵守 BSD 协议，是一个高性能的 <strong>key-value</strong> 数据库。</p>
+</li>
+<li><p>Redis 与其他 key - value 缓存产品有以下三个特点：</p>
+<ul>
+<li><p>Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</p>
+</li>
+<li><p>Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。</p>
+</li>
+<li><p>Redis支持数据的备份，即master-slave模式的数据备份。(Copied)</p>
+</li>
+</ul>
+</li>
+<li><p><strong>简单使用：</strong>使用自动装配的RedisTemplate对象，根据操作类型的不同，生成不同的值操作对象，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">StringRedisTemplate redisTemplate;		<span class="comment">//推荐，操作redis客户端，可以避免产生乱码</span></span><br><span class="line"><span class="type">ValueOperators</span> <span class="variable">ops</span> <span class="operator">=</span> redisTemplate.opsForValue();</span><br><span class="line"><span class="type">Object</span> <span class="variable">val</span> <span class="operator">=</span> ops.get(<span class="string">&quot;testKey&quot;</span>);</span><br><span class="line">System.out.println(val);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h4><h6 id="Simple和Ehcache"><a href="#Simple和Ehcache" class="headerlink" title="Simple和Ehcache"></a>Simple和Ehcache</h6><ul>
+<li><p>缓存（Cache）是一种介于数据永久储存介质与数据应用之间的数据临时储存介质，可以加快读写速度</p>
+</li>
+<li><p>作用：不仅可以存储从数据库读取的数据，也可以存储临时数据</p>
+</li>
+<li><p>Boot缓存使用：</p>
+<ul>
+<li><p>导入依赖cache的starter</p>
+</li>
+<li><p>在容器上加入<code>@EnableCaching</code>注解开启缓存服务</p>
+</li>
+<li><p>在使用缓存的方法上加入<code>@Cacheable</code>注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Cacheable(value = &quot;service&quot;, key = &quot;#id&quot;)</span></span><br><span class="line"><span class="comment">//@CachePut</span></span><br><span class="line"><span class="keyword">public</span> User <span class="title function_">getUserById</span><span class="params">(String id)</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> userDao.selectById(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>@Cacheable中value指的是缓存的命名空间，key指的是缓存对应的键值，#id表示引用id变量</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>@CachePut注解：只将值放入缓存而不读取缓存</p>
+</li>
+<li><p><strong>注意：</strong>@Cacheable注解只能在Bean中使用，不能在方法调用中生效</p>
+</li>
+<li><p>更换ehcache缓存技术：1. 导入坐标 2. 配置spring配置缓存类型 3. 导入ehcache的配置文件</p>
+</li>
+</ul>
+<h6 id="数据淘汰策略"><a href="#数据淘汰策略" class="headerlink" title="数据淘汰策略"></a>数据淘汰策略</h6><ol>
+<li>LRU（Least Recently Used）：挑选最近最少使用的数据淘汰</li>
+<li>LFU（Least Frequently Used）：挑选近期使用次数最少的数据淘汰</li>
+<li>TTL（Time To Live）：挑选即将过期的数据淘汰</li>
+</ol>
+<h6 id="JetCache"><a href="#JetCache" class="headerlink" title="JetCache"></a>JetCache</h6><ul>
+<li><p>JetCache对SpringCache进行了封装，在原有功能基础上实现了多级缓存、缓存统计、异步调用、数据报表等功能</p>
+</li>
+<li><p>能兼容LinkedHashMap和Caffeine本地缓存，Redis和Tair远程缓存、</p>
+</li>
+<li><p>基本使用：</p>
+<ul>
+<li><p>依赖 jetcache-starter-redis（非SpringBoot整合）</p>
+</li>
+<li><p><strong>在Spring容器上开启CreateCache注解</strong><code>@EnableCreateCacheAnnotation</code>，<code>@EnableMethodCache</code>（方法注解，传入包名）</p>
+</li>
+<li><p>在Spring配置文件中加入jetCache配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">jetcache:</span></span><br><span class="line"> <span class="attr">local:</span></span><br><span class="line">  <span class="attr">default:</span></span><br><span class="line">   <span class="attr">type:</span> <span class="string">linkedhashmap</span>		<span class="comment"># 本地缓存方案</span></span><br><span class="line">   <span class="attr">keyConvertor:</span> <span class="string">fastjson</span>	<span class="comment"># 键转换器</span></span><br><span class="line"> <span class="attr">remote:</span></span><br><span class="line">  <span class="attr">default:</span></span><br><span class="line">   <span class="attr">type:</span> <span class="string">redis</span></span><br><span class="line">   <span class="attr">host:</span> <span class="string">localhost</span></span><br><span class="line">   <span class="attr">port:</span> <span class="number">6379</span></span><br><span class="line">   <span class="attr">keyConvertor:</span> <span class="string">fastjson</span></span><br><span class="line">   <span class="attr">valueEncode:</span> <span class="string">java</span>		<span class="comment"># 序列化对象的形式</span></span><br><span class="line">   <span class="attr">valueDecode:</span> <span class="string">java</span></span><br><span class="line">   <span class="attr">poolConfig:</span>		<span class="comment"># 必须要求至少有一条配置</span></span><br><span class="line">    <span class="attr">maxTotal:</span> <span class="number">50</span></span><br><span class="line">  <span class="attr">msmCode:</span>			<span class="comment"># 可以根据环境进行自定义配置</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在缓存对象上加入@CreateCache注解（已弃用）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CreateCache(area = &quot;msmCode&quot;, name = &quot;pokerUser_&quot;, expire = 3600, cacheType = CacheType.LOCAL)</span></span><br><span class="line"><span class="comment">//area指使用的配置，name指key的前缀，expire指存活时间（单位：秒 可自定义）, cacheType指缓存方案 远程、本地或两者</span></span><br><span class="line"><span class="keyword">private</span> Cache&lt;String, String&gt; jetCache;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在缓存方法上加入@Cached注解（已弃用）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Cached(name = &quot;msmCode_&quot;, expire = 3600, cacheType = CacheType.LOCAL)</span></span><br><span class="line"><span class="comment">//name指key的前缀，expire指存活时间（单位：秒 可自定义）, cacheType指缓存方案 远程、本地或两者</span></span><br><span class="line"><span class="keyword">public</span> User <span class="title function_">getUserById</span><span class="params">(Long id)</span> &#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>重要：如果需要存入java对象，则需要使java对象实现序列化</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/05/31/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/">← Next Java多线程</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/05/31/MybatisPlus/">MybatisPlus Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">Steveny</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social" target="_blank" rel="noopener" href="https://github.com/JIGerss"><i class="fab fa-github" alt="GitHub"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">日志的管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%83%AD%E9%83%A8%E7%BD%B2"><span class="toc-number">2.</span> <span class="toc-text">热部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">高级配置</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%88%96%E8%87%AA%E5%AE%9A%E4%B9%89Bean%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">3.0.1.</span> <span class="toc-text">第三方或自定义Bean的配置</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Bean%E5%B1%9E%E6%80%A7%E6%A0%A1%E9%AA%8C"><span class="toc-number">3.0.2.</span> <span class="toc-text">Bean属性校验</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">高级测试</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E4%B8%B4%E6%97%B6%E5%B1%9E%E6%80%A7"><span class="toc-number">4.0.1.</span> <span class="toc-text">添加临时属性</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E4%B8%B4%E6%97%B6%E7%9A%84Bean"><span class="toc-number">4.0.2.</span> <span class="toc-text">添加临时的Bean</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A1%A8%E7%8E%B0%E5%B1%82%E6%B5%8B%E8%AF%95"><span class="toc-number">4.0.3.</span> <span class="toc-text">表现层测试</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E5%B1%82%E6%B5%8B%E8%AF%95%E4%BA%8B%E5%8A%A1%E5%9B%9E%E6%BB%9A"><span class="toc-number">4.0.4.</span> <span class="toc-text">业务层测试事务回滚</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WebSocket"><span class="toc-number">5.</span> <span class="toc-text">WebSocket</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Redis%E7%AE%80%E4%BB%8B"><span class="toc-number">6.</span> <span class="toc-text">Redis简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%93%E5%AD%98"><span class="toc-number">7.</span> <span class="toc-text">缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Simple%E5%92%8CEhcache"><span class="toc-number">7.0.1.</span> <span class="toc-text">Simple和Ehcache</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="toc-number">7.0.2.</span> <span class="toc-text">数据淘汰策略</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#JetCache"><span class="toc-number">7.0.3.</span> <span class="toc-text">JetCache</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr><span class="text-title">ICP</span><a class="text-content" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">豫ICP备2022020092号</a></nobr><nobr><span class="text-title">©</span><span class="text-content">2023 to 2023</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>

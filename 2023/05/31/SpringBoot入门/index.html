@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>SpringBoot入门 | Steveny's Blog</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><script>var config = {"root":"/","search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy","copyFinish":"copied","expand":"expand"}}</script><script src="//unpkg.com/mermaid@9.2.2/dist/mermaid.min.js"></script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/brands.min.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/fontawesome.min.css"><link rel="stylesheet" href="/css/arknights.css"><script>if (window.localStorage.getItem('theme-mode') === 'light') document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Brands';
+ src: local('Font Awesome 6 Brands'), url('/lib/fontawesome/fa-brands.woff2') format('woff2');
+}
+@font-face {
+ font-family: 'Font Awesome 6 Free';
+ src: local('Font Awesome 6 Free'), url('/lib/fontawesome/fa-regular.woff2') format('woff2');
+}</style><style>:root {
+  --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+  --light-background: url('/img/bk.jpg');
+}</style><meta name="generator" content="Hexo 6.3.0"></head><body><div class="loading" style="opacity: 0"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><nav><div class="navBtn hide"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>SpringBoot入门</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2023-05-31T11:02:24.000Z" id="date"> 2023-05-31</time></div></span><br><span>Last Update: <div class="control"><time datetime="2023-05-31T11:08:24.911Z" id="updated"> 2023-05-31</time></div></span></div></div><hr><div id="post-content"><h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><ul>
+<li>目的：用来简化Spring原生开发</li>
+<li>优点：简化了Spring原生开发中初步搭建过程和开发过程，且最后不需要额外提供tomcat服务端而是直接运行</li>
+<li>原理：使用<strong>起步依赖</strong>方法帮助开发者导入若干配置</li>
+<li>基本操作：<ul>
+<li>创建boot程序和controller类</li>
+<li>运行Application.class</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><strong>SpringBoot将tomcat服务端更换成jetty的流程：</strong></li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-jetty<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>SpringBoot配置文件方法：</strong><ul>
+<li>① 在resource下的application.properties中配置（优先的配置）</li>
+<li>② 在application.yml中配置（推荐）</li>
+<li>③ 在application.yaml中配置（不推荐因为idea不提示，可以在模块配置的Fecets中加上配置解决）</li>
+</ul>
+</li>
+</ol>
+<h4 id="yaml格式"><a href="#yaml格式" class="headerlink" title="yaml格式"></a>yaml格式</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">user:</span></span><br><span class="line"> <span class="attr">name:</span> <span class="string">franky</span></span><br><span class="line"> <span class="attr">age:</span> <span class="number">20</span></span><br><span class="line"> <span class="attr">tel:</span> <span class="number">123456</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">result:</span></span><br><span class="line"> <span class="attr">data:</span></span><br><span class="line">  <span class="attr">array:</span></span><br><span class="line">   <span class="bullet">-</span> <span class="number">1</span></span><br><span class="line">   <span class="bullet">-</span> <span class="number">222</span></span><br><span class="line">   <span class="bullet">-</span> <span class="number">343333</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>优点：易阅读，重数据，轻格式</li>
+<li>规则：<ul>
+<li>大小写敏感</li>
+<li><strong>数据前有一个空格</strong></li>
+<li>不同层级用空格区分</li>
+</ul>
+</li>
+</ul>
+<h6 id="读取自定义配置"><a href="#读取自定义配置" class="headerlink" title="读取自定义配置"></a>读取自定义配置</h6><ul>
+<li><p>在boot程序中可以通过：</p>
+<ul>
+<li><p>注入的形式读取配置（如：”${user.name}”，”${result.data.array[0]}”）</p>
+</li>
+<li><p>使用自动装配的Environment类来自动读取配置</p>
+</li>
+<li><p>使用类来接收</p>
+<ul>
+<li><pre><code class="java">@Component
+@ConfigurationProperties(prefix = &quot;user&quot;)
+public class User &#123;
+&#125;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- **优先级：**</span><br><span class="line">  - 最高- jar包外的config文件夹中的配置文件</span><br><span class="line">  - 高-     jar包外的配置文件</span><br><span class="line">  - 中-     resource中config下的配置文件</span><br><span class="line">  - 低-     resource下的配置文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">###### 多环境开发</span><br><span class="line"></span><br><span class="line">1. **使用yml中的profile属性**</span><br><span class="line"></span><br><span class="line">```yaml</span><br><span class="line">spring:</span><br><span class="line">  profiles:</span><br><span class="line">    active: dev		#使用的环境</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">#开发</span><br><span class="line">spring:</span><br><span class="line">  config:</span><br><span class="line">    activate:</span><br><span class="line">      on-profile: dev</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">  port: 8080</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">#生产</span><br><span class="line">spring:</span><br><span class="line">  config:</span><br><span class="line">    activate:</span><br><span class="line">      on-profile: pro</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">  port: 8090</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><strong>使用properties的多文件配置</strong></li>
+</ol>
+<ul>
+<li><p>application.properties——————-&gt;spring.profiles.active&#x3D;pro</p>
+<ul>
+<li><p>application**-dev**.properties——————-&gt;server.port&#x3D;8080。。。。。</p>
+</li>
+<li><p>application**-pro**.properties——————-&gt;server.port&#x3D;8090。。。。。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><strong>带参数启动</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar springbootXXX.jar --spring.profiles.active=pro</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><strong>maven控制boot多环境开发</strong></li>
+</ol>
+<ul>
+<li>① 在pom文件中加入多环境配置</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--开发环境--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>dev<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">profile.active</span>&gt;</span>dev<span class="tag">&lt;/<span class="name">profile.active</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--生产环境--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>pro<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">profile.active</span>&gt;</span>pro<span class="tag">&lt;/<span class="name">profile.active</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>② 导入让maven配置加载入资源配置的插件</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-resources-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">useDefaultDelimiters</span>&gt;</span>true<span class="tag">&lt;/<span class="name">useDefaultDelimiters</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>③ 使用<code>$&#123;Value&#125;</code>的形式在yaml中使用</li>
+</ul>
+<h4 id="SpringBoot整合Mybatis"><a href="#SpringBoot整合Mybatis" class="headerlink" title="SpringBoot整合Mybatis"></a>SpringBoot整合Mybatis</h4><ul>
+<li><p><strong>区别：</strong></p>
+<ul>
+<li>无需手写MybatisConfig和JdbcConfig，SpringBoot将自动生成</li>
+<li>无需手动导入properties，只需要在SpringBoot配置中写上dataSource有关参数</li>
+<li>无需手动扫描mapper，只需要在原来mapper类上加入<code>@Mapper</code>注解，SpringBoot将自动扫描该类</li>
+</ul>
+</li>
+<li><p><strong>注意：</strong></p>
+<ul>
+<li>生成项目时应加入Mybatis和mysql的起步依赖</li>
+<li>如需要更改数据源类型，只需要导入依赖并在dataSource配置中加上type参数即可</li>
+</ul>
+</li>
+</ul>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2023/05/31/MybatisPlus/">← Next MybatisPlus</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2023/05/31/Spring-Framework/">Spring Framework Prev →</a></div></div></div></div><div class="bottom-btn"><div><a id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧</a><a id="to-index" href="#toc-div" title="To Catalog">≡</a><a id="color-mode" onClick="colorMode.change()" title="Change Theme"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/">Steveny</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social" target="_blank" rel="noopener" href="https://github.com/JIGerss"><i class="fab fa-github" alt="GitHub"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">基本使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#yaml%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">yaml格式</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE"><span class="toc-number">2.0.1.</span> <span class="toc-text">读取自定义配置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SpringBoot%E6%95%B4%E5%90%88Mybatis"><span class="toc-number">3.</span> <span class="toc-text">SpringBoot整合Mybatis</span></a></li></ol></div></div><footer><nobr><span class="text-title">ICP</span><a class="text-content" target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">豫ICP备2022020092号</a></nobr><nobr><span class="text-title">©</span><span class="text-content">2023 to 2023</span></nobr><br><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr>by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/search.js"></script><script src="/js/arknights.js"></script><script src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script src="/js/pjax.js"></script><script class="pjax-js">reset= () => {code.findCode();
+document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script></body></html>
